@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Location Test</h1>
+  <form #cityForm="ngForm" (ngSubmit)="onSubmit(cityForm)">
+    <div class="form-group">
+      <label for="city">City: </label>
+      <input type="text" id="city" name="city" required ngModel />
+      <div [hidden]="city" class="alert">City is required</div>
+    </div>
+    <button type="submit" class="btn">City location</button>
+    <button type="button" class="btn" (click)="getUserLocation()">
+      GPS location
+    </button>
+  </form>
+</div>
