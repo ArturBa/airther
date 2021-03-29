@@ -28,6 +28,13 @@ jobs:
         npm run lint
         npm test -- --watch=false --progress=false --browsers=ChromeHeadlessCI
 
+    - name: Test Coverage
+      uses: AthleticNet/comment-test-coverage@1.1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: coverage/coverage-summary.json
+        title: Karma Test Coverage
+
   e2e-tests:
     runs-on: ubuntu-latest
 
