@@ -11,8 +11,11 @@ exports.config = {
   allScriptsTimeout: 11000,
   specs: ['./src/**/*.e2e-spec.ts'],
   browserName: 'chrome',
-  chromeOptions: {
-    args: ['--no-sandbox', '--headless', '--window-size=1024,768'],
+  capabilities: {
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['--no-sandbox', '--headless', '--window-size=1024,768'],
+    },
   },
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,
