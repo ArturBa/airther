@@ -46,5 +46,4 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         npm install
-        npm run lint
         npm run e2e --protractor-config=e2e/protractor-ci.conf.js --webdriver-update=false
