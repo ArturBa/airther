@@ -7,8 +7,6 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'airther';
-
   constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit(): void {

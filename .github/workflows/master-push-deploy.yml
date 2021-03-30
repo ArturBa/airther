@@ -22,7 +22,8 @@ jobs:
     - name: Prepare and deploy
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
       run: |
         npm install
         npm run lint
-        npm run ng -- deploy --base-href=/airther/ --name="GHPages" --email=ghpages@example.com
+        npm run deployGHPages

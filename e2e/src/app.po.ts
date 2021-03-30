@@ -5,7 +5,11 @@ export class AppPage {
     return browser.get(browser.baseUrl);
   }
 
-  async getTitleText(): Promise<string> {
-    return element(by.css('app-root .content span')).getText();
+  async getLocationComponent(): Promise<unknown> {
+    return element(by.css('app-location'));
+  }
+
+  async getLocationInput(): Promise<unknown> {
+    return element(by.css('app-location input')).getAttribute('placeholder');
   }
 }
