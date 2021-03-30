@@ -1,14 +1,24 @@
-<div class="container">
-  <h1>Location Test</h1>
-  <form #cityForm="ngForm" (ngSubmit)="onSubmit(cityForm)">
-    <div class="form-group">
-      <label for="city">City: </label>
-      <input type="text" id="city" name="city" required ngModel />
-      <div [hidden]="city" class="alert">City is required</div>
-    </div>
-    <button type="submit" class="btn">City location</button>
-    <button type="button" class="btn" (click)="getUserLocation()">
-      GPS location
-    </button>
-  </form>
-</div>
+<p-card class="flex">
+  <div id="cityData">{{ cityData }}</div>
+  <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <span class="p-input-icon-right">
+        <i class="pi pi-search" *ngIf="!isFormEmpty()" (click)="onSubmit()"></i>
+        <i
+          class="pi pi-compass"
+          *ngIf="isFormEmpty()"
+          (click)="getUserLocation()"
+        ></i>
+        <input
+          type="text"
+          pInputText
+          placeholder="Enter the name of the city"
+          formControlName="city"
+        />
+      </span>
+      <small class="p-error" *ngIf="errorMsg">
+        {{ errorMsg }}
+      </small>
+    </form>
+  </div>
+</p-card>

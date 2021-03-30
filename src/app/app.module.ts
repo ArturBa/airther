@@ -7,10 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimeModule } from './prime.module';
-import { LocationComponent } from './location/location.component';
+import { LocationModule } from './location/location.module';
 
 @NgModule({
-  declarations: [AppComponent, LocationComponent],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -18,6 +18,8 @@ import { LocationComponent } from './location/location.component';
     PrimeModule,
     FormsModule,
     HttpClientModule,
+
+    LocationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
