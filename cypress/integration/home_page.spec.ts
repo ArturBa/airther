@@ -13,7 +13,7 @@ describe('home page', () => {
       cy.get('input').type('Kraków');
 
       cy.get('app-location form').submit();
-    })
+    });
 
   });
 });
