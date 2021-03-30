@@ -4,10 +4,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PrimeModule } from './prime.module';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { LocationModule } from './location/location.module';
+import { PrimeModule } from './prime.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { LocationModule } from './location/location.module';
     FormsModule,
     HttpClientModule,
 
+    DashboardModule,
     LocationModule,
   ],
   providers: [],

@@ -47,3 +47,6 @@ Thumbs.db
 src/environments/secrets.environment.ts
 
 documentation/
+
+# Ignore secrets file
+src/environments/secrets.environment.ts

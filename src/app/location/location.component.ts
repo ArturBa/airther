@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { OpenWeatherService } from '../services/open-weather.service';
+import { OpenWeatherService } from '../services/open-weather/open-weather.service';
 
 /**
  * Location component
