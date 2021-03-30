@@ -47,3 +47,4 @@ Thumbs.db
 src/environments/secrets.environment.ts
 
 documentation/
+output/e2e/**
