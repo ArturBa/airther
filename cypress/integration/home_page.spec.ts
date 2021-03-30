@@ -14,6 +14,5 @@ describe('home page', () => {
 
       cy.get('app-location form').submit();
     });
-
   });
 });

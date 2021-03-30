@@ -12,9 +12,8 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent implements OnInit {
   /**
    * Constructor
-   * @param primengConfig 
    */
-  constructor(private primengConfig: PrimeNGConfig) { }
+  constructor(private primengConfig: PrimeNGConfig) {}
 
   /**
    * Component init and prime ng config

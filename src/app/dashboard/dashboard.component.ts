@@ -15,10 +15,10 @@ export class DashboardComponent implements OnInit {
    */
   location = {};
   /**
-   * User  city name 
+   * User  city name
    */
   city = '';
-  constructor(protected ipApiService: IpApiService) { }
+  constructor(protected ipApiService: IpApiService) {}
 
   ngOnInit(): void {
     this.initLocation();
@@ -39,7 +39,6 @@ export class DashboardComponent implements OnInit {
 
   /**
    * Update location of user by given address (in latitude and longitude)
-   * @param location 
    */
   updateLocation(location: { latitude: number; longitude: number }): void {
     this.location = location;

@@ -26,4 +26,4 @@ import { PrimeModule } from './prime.module';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
