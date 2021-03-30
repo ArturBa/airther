@@ -9,7 +9,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "config": "ts-node -O '{\"module\": \"commonjs\"}' ./config.index.ts",
-    "deployGHPages": "npm run config && ng deploy --base-href=/airther/ --name=GHPages --email=ghpages@example.com"
+    "deployGHPages": "npm run config && ng deploy --base-href=/airther/ --name=GHPages --email=ghpages@example.com",
+    "compodoc": "compodoc -p tsconfig.compodoc.json -s -w",
+    "compodoc:build": "compodoc -p tsconfig.compodoc.json"
   },
   "husky": {
     "hooks": {
@@ -37,6 +39,7 @@
     "@angular-devkit/build-angular": "~0.1100.1",
     "@angular/cli": "~11.0.1",
     "@angular/compiler-cli": "~11.0.0",
+    "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "angular-cli-ghpages": "^1.0.0-rc.1",

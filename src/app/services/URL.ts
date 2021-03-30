@@ -1,5 +1,8 @@
-import { environment } from 'src/environments/environment';
+import { environment } from '../..//environments/environment';
 
+/**
+ * OpenWeatherAPIs
+ */
 export const API_URL = {
   location:
     'http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=1&appid=' +

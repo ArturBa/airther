@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 
 import { CardModule } from 'primeng/card';
 
+/**
+ * PrimeNG imports
+ */
 const PRIME_IMPORTS = [CardModule];
 
 @NgModule({

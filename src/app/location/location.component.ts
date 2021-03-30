@@ -3,16 +3,31 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { OpenWeatherService } from '../services/open-weather.service';
 
+/**
+ * Location component
+ */
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.scss'],
 })
 export class LocationComponent implements OnInit {
+  /**
+   * Output event if Latitude/Longitude defined
+   */
   @Output() locationEvent = new EventEmitter();
+  /**
+   * Input cityData{string} for a city name for weather location
+   */
   @Input() cityData: string;
 
+  /**
+   * Input form
+   */
   form: FormGroup;
+  /**
+   * Error msg for user
+   */
   errorMsg = '';
 
   constructor(protected owService: OpenWeatherService) {}
@@ -23,14 +38,26 @@ export class LocationComponent implements OnInit {
     });
   }
 
+  /**
+   * Check if form value is empty
+   * @returns Return true if empty
+   */
   isFormEmpty(): boolean {
     return this.getCityForm().value.length === 0;
   }
 
+  /**
+   * @returns true if city data is empty
+   */
   isCityDataEmpty(): boolean {
     return this.cityData.length === 0;
   }
 
+  /**
+   * Get user location by GPS service.
+   * If any error there is a msg for the user.
+   * If success new event is emitted
+   */
   getUserLocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -50,6 +77,10 @@ export class LocationComponent implements OnInit {
     }
   }
 
+  /**
+   * Submit data by emitting event.
+   * If any error a new msg is on a screen
+   */
   onSubmit(): void {
     if (this.isFormEmpty()) {
       this.errorMsg = 'Please input the city';
@@ -58,6 +89,11 @@ export class LocationComponent implements OnInit {
     const city = this.getCityForm().value;
     this.owService.getLocation(city).subscribe(
       (location) => {
+        if (location.length < 1) {
+          this.errorMsg =
+            'Please check the city. Cannot found data for this city';
+          return;
+        }
         const lat = location[0].lat;
         const lon = location[0].lon;
 
