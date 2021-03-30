@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { OpenWeatherService } from '../services/open-weather.service';
+import { OpenWeatherService } from '../services/open-weather/open-weather.service';
 
 /**
  * Location component
@@ -30,7 +30,7 @@ export class LocationComponent implements OnInit {
    */
   errorMsg = '';
 
-  constructor(protected owService: OpenWeatherService) {}
+  constructor(protected owService: OpenWeatherService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({

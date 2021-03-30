@@ -1,0 +1,7 @@
+<app-location
+  [cityData]="city"
+  (locationEvent)="updateLocation($event)"
+></app-location>
+
+<hr />
+{{ this.location | json }}

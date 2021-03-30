@@ -22,14 +22,4 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should create empty values', () => {
-    expect(component.city).toBeFalsy();
-  });
-
-  it('should update location on call', () => {
-    const location = { latitude: 10, longitude: 10 };
-    component.updateLocation(location);
-    expect(component.location).toEqual(location);
-  });
 });
