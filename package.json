@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deployGHPages": "npm run config && ng deploy --base-href=/airther/ --name=GHPages --email=ghpages@example.com"
   },
   "husky": {
     "hooks": {
