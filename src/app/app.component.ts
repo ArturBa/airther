@@ -7,11 +7,17 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'airther';
-
+  location = {};
+  city = '';
   constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
+  }
+
+  updateLocation(location: { latitude: number; longitude: number }): void {
+    this.location = location;
+    // TODO: remove
+    this.city = (location.latitude as unknown) as string;
   }
 }
