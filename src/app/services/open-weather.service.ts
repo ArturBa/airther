@@ -11,8 +11,8 @@ import { CityLocation } from './open-weather.model';
 export class OpenWeatherService {
   constructor(private httpClient: HttpClient) {}
 
-  getLocation(city: string): Observable<CityLocation> {
-    return this.httpClient.get<CityLocation>(
+  getLocation(city: string): Observable<CityLocation[]> {
+    return this.httpClient.get<CityLocation[]>(
       this.enterCity(city, API_URL.location)
     );
   }
