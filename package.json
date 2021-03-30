@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "config": "ts-node -O '{\"module\": \"commonjs\"}' ./config.index.ts",
     "deployGHPages": "npm run config && ng deploy --base-href=/airther/ --name=GHPages --email=ghpages@example.com"
   },
   "husky": {
