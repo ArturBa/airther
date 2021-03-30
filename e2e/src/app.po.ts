@@ -8,4 +8,8 @@ export class AppPage {
   async getLocationComponent(): Promise<unknown> {
     return element(by.css('app-location'));
   }
+
+  async getLocationInput(): Promise<unknown> {
+    return element(by.css('app-location input')).getAttribute('placeholder');
+  }
 }

@@ -13,6 +13,11 @@ describe('workspace-project App', () => {
       await page.navigateTo();
       expect(await page.getLocationComponent()).toBeTruthy();
     });
+
+    it('should has a location input', async () => {
+      await page.navigateTo();
+      expect(await page.getLocationInput()).toBeTruthy();
+    });
   });
 
   afterEach(async () => {
