@@ -7,11 +7,12 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
+    "e2e": "cypress open",
     "config": "ts-node -O '{\"module\": \"commonjs\"}' ./config.index.ts",
     "deployGHPages": "npm run config && ng deploy --base-href=/airther/ --name=GHPages --email=ghpages@example.com",
     "compodoc": "compodoc -p tsconfig.compodoc.json -s -w",
-    "compodoc:build": "compodoc -p tsconfig.compodoc.json"
+    "compodoc:build": "compodoc -p tsconfig.compodoc.json",
+    "e2e:build": "cypress run"
   },
   "husky": {
     "hooks": {
@@ -44,6 +45,7 @@
     "@types/node": "^12.11.1",
     "angular-cli-ghpages": "^1.0.0-rc.1",
     "codelyzer": "^6.0.0",
+    "cypress": "^6.8.0",
     "husky": "^4.2.3",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -54,7 +56,6 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
-    "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",

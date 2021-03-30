@@ -99,21 +99,9 @@
             "tsConfig": [
               "tsconfig.app.json",
               "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "cypress/tsconfig.json"
             ],
             "exclude": ["**/node_modules/**"]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "airther:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "airther:serve:production"
-            }
           }
         },
         "deploy": {
