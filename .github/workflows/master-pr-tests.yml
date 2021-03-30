@@ -1,0 +1,56 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: unit tests
+      env:
+        DEFAULT_BRANCH: master
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        npm install
+        npm run lint
+        npm test -- --watch=false --progress=false --browsers=ChromeHeadlessCI
+
+    - name: Test Coverage
+      uses: AthleticNet/comment-test-coverage@1.1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: coverage/coverage-summary.json
+        title: Karma Test Coverage
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: e2e tests
+      env:
+        DEFAULT_BRANCH: master
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        npm install
+        npm run e2e --protractor-config=e2e/protractor-ci.conf.js --webdriver-update=false
