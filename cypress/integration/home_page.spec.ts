@@ -8,5 +8,12 @@ describe('home page', () => {
     cy.get('app-location').should('be.visible');
   });
 
-  describe('location', () => {});
+  describe('location', () => {
+    it('should get location by address', () => {
+      cy.get('input').type('Kraków');
+
+      cy.get('app-location form').submit();
+    })
+
+  });
 });
