@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
-const PRIME_IMPORTS = [ButtonModule, CardModule];
+const PRIME_IMPORTS = [CardModule];
 
 @NgModule({
   imports: [PRIME_IMPORTS],

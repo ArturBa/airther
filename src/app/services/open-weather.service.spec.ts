@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { OpenWeatherService } from './open-weather.service';
 
-describe('OpenWeatherService', () => {
+xdescribe('OpenWeatherService', () => {
   let service: OpenWeatherService;
 
   beforeEach(() => {
