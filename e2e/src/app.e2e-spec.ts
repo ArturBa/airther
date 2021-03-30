@@ -8,9 +8,11 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
-    await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('airther app is running!');
+  describe('location', () => {
+    it('should has a location component', async () => {
+      await page.navigateTo();
+      expect(await page.getLocationComponent()).toBeTruthy();
+    });
   });
 
   afterEach(async () => {
