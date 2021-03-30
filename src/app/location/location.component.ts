@@ -27,6 +27,10 @@ export class LocationComponent implements OnInit {
     return this.getCityForm().value.length === 0;
   }
 
+  isCityDataEmpty(): boolean {
+    return this.cityData.length === 0;
+  }
+
   getUserLocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

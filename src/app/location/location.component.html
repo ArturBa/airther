@@ -1,24 +1,37 @@
-<p-card class="flex">
-  <div id="cityData">{{ cityData }}</div>
-  <div>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <span class="p-input-icon-right">
-        <i class="pi pi-search" *ngIf="!isFormEmpty()" (click)="onSubmit()"></i>
-        <i
-          class="pi pi-compass"
-          *ngIf="isFormEmpty()"
-          (click)="getUserLocation()"
-        ></i>
-        <input
-          type="text"
-          pInputText
-          placeholder="Enter the name of the city"
-          formControlName="city"
-        />
-      </span>
-      <small class="p-error" *ngIf="errorMsg">
-        {{ errorMsg }}
-      </small>
-    </form>
+<p-card>
+  <div class="p-grid">
+    <div id="cityData" class="p-col-12 p-md-6" *ngIf="!isCityDataEmpty()">
+      {{ cityData }}
+    </div>
+    <div
+      class="p-col-12"
+      [ngClass]="{
+        'p-md-6': !isCityDataEmpty()
+      }"
+    >
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <span class="p-input-icon-right">
+          <i
+            class="pi pi-search"
+            *ngIf="!isFormEmpty()"
+            (click)="onSubmit()"
+          ></i>
+          <i
+            class="pi pi-compass"
+            *ngIf="isFormEmpty()"
+            (click)="getUserLocation()"
+          ></i>
+          <input
+            type="text"
+            pInputText
+            placeholder="Enter the name of the city"
+            formControlName="city"
+          />
+        </span>
+        <small class="p-error" *ngIf="errorMsg">
+          {{ errorMsg }}
+        </small>
+      </form>
+    </div>
   </div>
 </p-card>

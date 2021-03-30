@@ -8,6 +8,7 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
   location = {};
+  city = '';
   constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit(): void {
@@ -16,5 +17,7 @@ export class AppComponent implements OnInit {
 
   updateLocation(location: { latitude: number; longitude: number }): void {
     this.location = location;
+    // TODO: remove
+    this.city = (location.latitude as unknown) as string;
   }
 }
