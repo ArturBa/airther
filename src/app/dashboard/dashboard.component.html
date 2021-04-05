@@ -4,4 +4,10 @@
 ></app-location>
 
 <hr />
+
+<!-- TODO Remove this section -->
 {{ this.location | json }}
+<hr />
+
+<app-loading *ngIf="!isDataReady"></app-loading>
+<app-forecast *ngIf="isDataReady"></app-forecast>

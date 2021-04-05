@@ -1,0 +1,6 @@
+<p-progressSpinner></p-progressSpinner>
+
+<div *ngIf="longLoading">
+  This takes longer than usual. Please check city or try to reload
+  <p-button label="Reload" (onClick)="reloadCurrentPage()"></p-button>
+</div>

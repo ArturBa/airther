@@ -18,23 +18,34 @@ export class DashboardComponent implements OnInit {
    * User  city name
    */
   city = '';
+
+  isDataReady = false;
+
   constructor(protected ipApiService: IpApiService) {}
 
-  ngOnInit(): void {
-    this.initLocation();
+  async ngOnInit(): Promise<void> {
+    this.updateData();
+    await this.initLocation;
   }
 
   /**
    * Init application location by user IP
    */
-  initLocation(): void {
-    this.ipApiService.getLocation().subscribe((location) => {
-      this.location = {
-        latitude: location.latitude,
-        longitude: location.longitude,
-      };
-      this.city = location.city;
+  initLocation(): Promise<void> {
+    return new Promise((res, rej) => {
+      this.ipApiService.getLocation().subscribe((location) => {
+        this.location = {
+          latitude: location.latitude,
+          longitude: location.longitude,
+        };
+        this.city = location.city;
+        res();
+      });
     });
+  }
+
+  updateData(): void {
+    this.isDataReady = true;
   }
 
   /**
