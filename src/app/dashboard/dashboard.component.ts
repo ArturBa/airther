@@ -24,8 +24,8 @@ export class DashboardComponent implements OnInit {
   constructor(protected ipApiService: IpApiService) {}
 
   async ngOnInit(): Promise<void> {
+    await this.initLocation();
     this.updateData();
-    await this.initLocation;
   }
 
   /**

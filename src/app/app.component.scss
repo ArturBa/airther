@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+:host {
+  nav {
+    background-color: white;
+    height: 50px;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+
+    h1 {
+      color: #495057;
+      font-family: 'Anton';
+      font-size: 35px;
+      margin-top: 0px;
+      padding-left: 35px;
+    }
+  }
+  div {
+    margin: 0 auto;
+    max-width: 1325px;
+  }
+}
