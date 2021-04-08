@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  .title {
+    font-size: 20px;
+  }
+  .value {
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
