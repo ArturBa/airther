@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard.component';
 import { LocationModule } from '../location/location.module';
 import { PrimeModule } from '../prime.module';
+import { ForecastModule } from '../forecast/forecast.module';
+import { LoadingModule } from '../loading/loading.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -14,6 +16,8 @@ import { PrimeModule } from '../prime.module';
     FormsModule,
     ReactiveFormsModule,
     LocationModule,
+    ForecastModule,
+    LoadingModule,
   ],
   exports: [DashboardComponent],
 })
