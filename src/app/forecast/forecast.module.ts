@@ -6,12 +6,14 @@ import { CardModule } from 'primeng/card';
 import { DropdownModule } from 'primeng/dropdown';
 import { TabMenuModule } from 'primeng/tabmenu';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { AirqualityComponent } from './airquality/airquality.component';
 import { ForecastComponent } from './forecast/forecast.component';
-import { HourlyForecastComponent } from './hourly-forecast/hourly-forecast.component';
-import { WeatherComponent } from './weather/weather.component';
-import { HourlySingleComponent } from './hourly-single/hourly-single.component';
 import { HourlyDetailsComponent } from './hourly-details/hourly-details.component';
+import { HourlyForecastComponent } from './hourly-forecast/hourly-forecast.component';
+import { HourlySingleComponent } from './hourly-single/hourly-single.component';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,13 @@ import { HourlyDetailsComponent } from './hourly-details/hourly-details.componen
     HourlyDetailsComponent,
   ],
   imports: [
+    CardModule,
     CommonModule,
+    DropdownModule,
     FormsModule,
     ReactiveFormsModule,
-    CardModule,
+    SharedModule,
     TabMenuModule,
-    DropdownModule,
   ],
   exports: [ForecastComponent],
 })

@@ -1,6 +1,8 @@
 <p-progressSpinner></p-progressSpinner>
 
-<div *ngIf="longLoading">
-  This takes longer than usual. Please check city or try to reload
+<ng-container *ngIf="longLoading">
+  <span>
+    This takes longer than usual. Please check city or try to reload
+  </span>
   <p-button label="Reload" (onClick)="reloadCurrentPage()"></p-button>
-</div>
+</ng-container>
