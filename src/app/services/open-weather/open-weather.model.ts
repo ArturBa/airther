@@ -12,7 +12,6 @@ export interface CityLocation {
 /**
  * Open api full weather interface
  */
-
 export interface FullWeather {
   lat: number;
   lon: number;
@@ -111,4 +110,18 @@ export interface Components {
   pm2_5: number;
   pm10: number;
   nh3: number;
+}
+
+/**
+ * Open api Forecast interface
+ */
+export class ForecastModel {
+  lat: number;
+  lon: number;
+  timezone: string;
+  timezoneOffset: number;
+  currentWeather: Weather;
+  currentAir: AirQuality;
+  hourlyWeather: Weather[];
+  hourlyAir: AirQuality[];
 }
