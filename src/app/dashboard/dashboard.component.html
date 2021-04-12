@@ -10,4 +10,4 @@
 <hr />
 
 <app-loading *ngIf="!isDataReady"></app-loading>
-<app-forecast *ngIf="isDataReady"></app-forecast>
+<app-forecast *ngIf="isDataReady" [location]="location"></app-forecast>

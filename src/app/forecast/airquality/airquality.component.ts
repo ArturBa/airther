@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AirQualityIndexEnum } from 'src/app/shared/enums/air-quality-index.enum';
+import { AirQuality } from '../models/air-quality.model';
 
 @Component({
   selector: 'app-airquality',
@@ -6,7 +8,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./airquality.component.scss'],
 })
 export class AirqualityComponent implements OnInit {
-  @Input() airQualityForecast: any[];
+  @Input() airQuality: AirQuality;
+
+  get airQualityIndexName(): string {
+    return AirQualityIndexEnum[this.airQuality.index];
+  }
 
   constructor() {}
 
