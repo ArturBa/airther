@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
    * Constructor
    * @param ipApiService IpApiService
    */
-  constructor(protected ipApiService: IpApiService) { }
+  constructor(protected ipApiService: IpApiService) {}
 
   /**
    * Init component, get user location and data for him
@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
   }
 
   updateData(): void {
-    this.updateWeatherForecast()
+    this.updateWeatherForecast();
   }
 
   /**

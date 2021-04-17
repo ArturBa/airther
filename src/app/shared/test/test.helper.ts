@@ -25,7 +25,7 @@ export class TestHelper {
    * Generate a OpenWeatherService Mock
    * @returns openWeatherServiceMock
    */
-  static openWeatherMock() {
+  static openWeatherMock(): any {
     const openWeatherServiceMock = jasmine.createSpyObj(
       'OpenWeatherServiceMock',
       ['getLocation']
@@ -45,7 +45,7 @@ export class TestHelper {
    * Generate a IpAPiService Mock
    * @returns ipAPiServiceMock
    */
-  static ipApiMock() {
+  static ipApiMock(): any {
     const IpApiServiceMock = jasmine.createSpyObj('IpApiService', [
       'getLocation',
     ]);
