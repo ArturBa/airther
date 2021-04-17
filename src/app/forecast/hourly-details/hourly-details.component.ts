@@ -1,6 +1,6 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
-import { HOURLY_SHOW } from '../hourly-forecast/hourly-forecast.component';
+import { HOURLY_SHOW } from '../hourly-switch/hourly-switch.component';
 
 @Component({
   selector: 'app-hourly-details',

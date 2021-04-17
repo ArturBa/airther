@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HourlySingleComponent } from './hourly-single.component';
+import { HourlySwitchComponent } from './hourly-switch.component';
 
-describe('HourlySingleComponent', () => {
-  let component: HourlySingleComponent;
-  let fixture: ComponentFixture<HourlySingleComponent>;
+describe('HourlyForecastComponent', () => {
+  let component: HourlySwitchComponent;
+  let fixture: ComponentFixture<HourlySwitchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HourlySingleComponent],
+      declarations: [HourlySwitchComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HourlySingleComponent);
+    fixture = TestBed.createComponent(HourlySwitchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

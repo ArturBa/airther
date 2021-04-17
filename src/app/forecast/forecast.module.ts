@@ -14,8 +14,8 @@ import { SharedModule } from '../shared/shared.module';
 import { AirqualityComponent } from './airquality/airquality.component';
 import { ForecastComponent } from './forecast/forecast.component';
 import { HourlyDetailsComponent } from './hourly-details/hourly-details.component';
+import { HourlySwitchComponent } from './hourly-switch/hourly-switch.component';
 import { HourlyForecastComponent } from './hourly-forecast/hourly-forecast.component';
-import { HourlySingleComponent } from './hourly-single/hourly-single.component';
 import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
@@ -23,8 +23,8 @@ import { WeatherComponent } from './weather/weather.component';
     ForecastComponent,
     AirqualityComponent,
     WeatherComponent,
+    HourlySwitchComponent,
     HourlyForecastComponent,
-    HourlySingleComponent,
     HourlyDetailsComponent,
   ],
   imports: [

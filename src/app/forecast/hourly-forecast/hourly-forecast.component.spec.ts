@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HourlyForecastComponent } from './hourly-forecast.component';
 
-describe('HourlyForecastComponent', () => {
+describe('HourlySingleComponent', () => {
   let component: HourlyForecastComponent;
   let fixture: ComponentFixture<HourlyForecastComponent>;
 
