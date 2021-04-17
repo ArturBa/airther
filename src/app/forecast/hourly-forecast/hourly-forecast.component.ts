@@ -52,7 +52,7 @@ export class HourlyForecastComponent implements OnInit {
   toggleDetails(date: Date): void {
     if (date === this.detailsDate) {
       this.detailsDate = null;
-      var currentScroll =
+      const currentScroll =
         document.documentElement.scrollTop || document.body.scrollTop;
       setTimeout(
         () =>
