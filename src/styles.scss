@@ -12,3 +12,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+// Hide a indicator of a carousel
+.p-carousel .p-carousel-indicators {
+  padding: 1rem;
+  display: none;
+}

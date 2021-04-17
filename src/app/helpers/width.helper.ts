@@ -12,7 +12,7 @@ export class WidthHelper {
    */
   static readonly responsiveOptions = [
     {
-      breakpoint: WidthHelper.mdMaxWidth,
+      breakpoint: WidthHelper.mdMaxWidth + 'px',
       numVisible: 1,
       numScroll: 1,
     },
