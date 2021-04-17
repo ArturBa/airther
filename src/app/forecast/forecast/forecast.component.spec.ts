@@ -42,6 +42,9 @@ describe('ForecastComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ForecastComponent);
     component = fixture.componentInstance;
+
+    component.airQualityForecast = ['a', 'b'];
+    component.weatherForecast = ['a', 'b'];
     fixture.detectChanges();
   });
 

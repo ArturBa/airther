@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
+import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
-import { LocationComponent } from './location.component';
-
-import { PrimeModule } from '../prime.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+
+import { LocationComponent } from './location.component';
 
 @NgModule({
   declarations: [LocationComponent],
-  imports: [CommonModule, PrimeModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, CardModule, FormsModule, ReactiveFormsModule],
   exports: [LocationComponent],
 })
 export class LocationModule {}

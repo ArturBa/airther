@@ -41,17 +41,4 @@ describe('LoadingComponent', () => {
       expect(component.longLoading).toBeTrue();
     });
   }));
-
-  it('should call window reload on refresh button', () => {
-    // const refresh = {
-    //   reload: function (value) {
-    //     window.location.reload();
-    //   }
-    // };
-    spyOn(window.location, 'reload').and.returnValue();
-    // const $window = jasmine.createSpy('$window');
-    // spyOn(window.location, 'reload');
-    component.reloadCurrentPage();
-    expect(window.location.reload).toHaveBeenCalled();
-  });
 });

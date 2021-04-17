@@ -1,6 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DropdownModule } from 'primeng/dropdown';
 
-import { HourlySwitchComponent } from './hourly-switch.component';
+import { HourlySwitchComponent, HOURLY_SHOW } from './hourly-switch.component';
 
 describe('HourlyForecastComponent', () => {
   let component: HourlySwitchComponent;
@@ -9,6 +11,7 @@ describe('HourlyForecastComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HourlySwitchComponent],
+      imports: [DropdownModule, CommonModule],
     }).compileComponents();
   });
 
@@ -20,5 +23,10 @@ describe('HourlyForecastComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should update show', () => {
+    component.setCurrentShow(HOURLY_SHOW.airQuality);
+    expect(component.showType).toEqual(HOURLY_SHOW.airQuality);
   });
 });

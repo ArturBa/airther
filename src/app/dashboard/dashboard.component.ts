@@ -19,22 +19,21 @@ export class DashboardComponent implements OnInit {
    */
   city = '';
 
-  // TODO: remove this
+  // TODO: update this with correct value
   weatherForecast = [];
   airQualityForecast = [];
 
   isDataReady = false;
 
-  constructor(protected ipApiService: IpApiService) {}
+  constructor(protected ipApiService: IpApiService) { }
 
   async ngOnInit(): Promise<void> {
     await this.initLocation();
-    this.updateWeatherForecast();
     this.updateData();
   }
 
   // TODO: Remove
-  updateWeatherForecast(): void {
+  protected updateWeatherForecast(): void {
     const date = new Date();
     for (let i = 0; i < 20; i++) {
       const time = date.setMinutes(date.getMinutes() + i * 60);
@@ -67,6 +66,7 @@ export class DashboardComponent implements OnInit {
   }
 
   updateData(): void {
+    this.updateWeatherForecast()
     this.isDataReady = true;
   }
 
@@ -77,5 +77,6 @@ export class DashboardComponent implements OnInit {
     this.location = location;
     // TODO: remove
     this.city = (location.latitude as unknown) as string;
+    this.updateData();
   }
 }

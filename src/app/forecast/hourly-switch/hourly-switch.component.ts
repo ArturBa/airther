@@ -1,4 +1,11 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { WidthHelper } from 'src/app/helpers/width.helper';
 
 export enum HOURLY_SHOW {
@@ -12,8 +19,6 @@ export enum HOURLY_SHOW {
   styleUrls: ['./hourly-switch.component.scss'],
 })
 export class HourlySwitchComponent implements OnInit {
-
-
   @Input() showType: HOURLY_SHOW;
   @Output() showTypeChange = new EventEmitter<HOURLY_SHOW>();
 
@@ -22,7 +27,7 @@ export class HourlySwitchComponent implements OnInit {
 
   innerWidth: number;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
@@ -62,5 +67,5 @@ export class HourlySwitchComponent implements OnInit {
   /**
    * Use for unsort the enum
    */
-  unsorted(): void { }
+  unsorted(): void {}
 }

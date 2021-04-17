@@ -22,12 +22,11 @@ import { WidthHelper } from '../../helpers/width.helper';
     ]),
   ],
 })
-export class HourlyForecastComponent implements OnInit {
+export class HourlyForecastComponent {
   @Input() weatherForecast: any[];
   @Input() airQualityForecast: any[];
 
   @ViewChild('details') detailsElem: ElementRef;
-  @ViewChild('p-carrousel') carrousel: ElementRef;
 
   readonly HOURLY_SHOW = HOURLY_SHOW;
 
@@ -39,8 +38,6 @@ export class HourlyForecastComponent implements OnInit {
   responsiveOptions = WidthHelper.responsiveOptions;
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   getForecast(): any[] {
     if (this.showType === HOURLY_SHOW.airQuality) {
