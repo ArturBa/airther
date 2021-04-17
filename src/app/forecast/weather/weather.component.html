@@ -2,44 +2,44 @@
   <h2>Weather</h2>
   <div class="content">
     <div class="temperature">
-      <span [innerHTML]="weather.temp + '&deg'"> </span>
+      <span [innerHTML]="weatherForecast.temp + '&deg'"> </span>
       <span> Perceived: </span>
-      <span [innerHTML]="weather.temp + '&deg'"> </span>
+      <span [innerHTML]="weatherForecast.temp + '&deg'"> </span>
     </div>
 
     <div class="details">
       <span>
-        {{ weather.description }}
+        {{ weatherForecast.description }}
       </span>
       <div class="p-grid">
         <app-title-value
           title="Rain"
-          [value]="weather.rain + 'mm'"
+          [value]="weatherForecast.rain + 'mm'"
           class="p-col-4"
         ></app-title-value>
         <app-title-value
           title="Wind"
-          [value]="weather.rain + 'km/h'"
+          [value]="weatherForecast.rain + 'km/h'"
           class="p-col-4"
         ></app-title-value>
         <app-title-value
           title="Humidity"
-          [value]="weather.rain + '%'"
+          [value]="weatherForecast.rain + '%'"
           class="p-col-4"
         ></app-title-value>
         <app-title-value
           title="Snow"
-          [value]="weather.rain + 'mm'"
+          [value]="weatherForecast.rain + 'mm'"
           class="p-col-4"
         ></app-title-value>
         <app-title-value
           title="Pressure"
-          [value]="weather.rain + 'hPa'"
+          [value]="weatherForecast.rain + 'hPa'"
           class="p-col-4"
         ></app-title-value>
         <app-title-value
           title="Cloudy"
-          [value]="weather.rain + '%'"
+          [value]="weatherForecast.rain + '%'"
           class="p-col-4"
         ></app-title-value>
       </div>

@@ -1,3 +1,19 @@
+.p-grid {
+  margin: 0;
+  padding: 0 8px;
+}
+
+.pc-data-selection {
+  height: 60px;
+  width: 50%;
+  background-color: white;
+  border: 1px solid #838588;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .selected {
-  background-color: yellow;
+  background-color: #edeaea;
 }

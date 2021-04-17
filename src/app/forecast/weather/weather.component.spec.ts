@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CardModule } from 'primeng/card';
 
 import { WeatherComponent } from './weather.component';
 
@@ -9,6 +10,7 @@ describe('WeatherComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WeatherComponent],
+      imports: [CardModule],
     }).compileComponents();
   });
 

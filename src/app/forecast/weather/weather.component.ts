@@ -6,11 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent {
-  @Input() weatherForecast: any[];
-
-  weather = {
-    temp: 6,
-    rain: 10,
-    description: 'Sunny intervals and a gentle breeze',
-  };
+  @Input() weatherForecast: any;
 }

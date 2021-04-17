@@ -4,30 +4,23 @@
     [(ngModel)]="currentShow"
     optionLabel="value"
     optionValue="value"
+    autoWidth="false"
+    [style]="{ width: '100%' }"
   ></p-dropdown>
 </div>
 
 <div *ngIf="!isSmallScreen()" class="p-grid">
-  <div
-    *ngFor="let show of HOURLY_SHOW | keyvalue"
+  <h3
+    *ngFor="let show of HOURLY_SHOW | keyvalue: unsorted"
     class="pc-data-selection p-col-6"
     [class.selected]="currentShow === show.value"
     (click)="setCurrentShow(show.value)"
   >
     {{ show.value }}
-  </div>
+  </h3>
 </div>
-{{ currentShow | json }}
-<div>
-  <div>Arrow left</div>
-  <app-hourly-single
-    *ngFor="let _ of weatherForecast; let i = index"
-    [showType]="currentShow"
-    [weatherForecast]="weatherForecast[i]"
-    [airQualityForecast]="airQualityForecast[i]"
-    (toggleDetails)="toggleDetails(i)"
-  ></app-hourly-single>
-  <div>Arrow right</div>
-</div>
-
-<app-hourly-details *ngIf="detailsId !== -1"></app-hourly-details>
+<app-hourly-single
+  [showType]="currentShow"
+  [weatherForecast]="weatherForecast"
+  [airQualityForecast]="airQualityForecast"
+></app-hourly-single>

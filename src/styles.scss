@@ -1,7 +1,11 @@
+@import url('styles/weather-icons.css');
+@import url('styles/weather-icons-custom.scss');
+
 /* You can add global styles to this file, and also import other style files */
 body {
   margin: 0;
   background-color: #f8f9fa;
+  margin-bottom: 5rem;
 }
 
 a {

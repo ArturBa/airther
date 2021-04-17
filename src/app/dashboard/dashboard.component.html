@@ -10,4 +10,8 @@
 <hr />
 
 <app-loading *ngIf="!isDataReady"></app-loading>
-<app-forecast *ngIf="isDataReady"></app-forecast>
+<app-forecast
+  [weatherForecast]="weatherForecast"
+  [airQualityForecast]="airQualityForecast"
+  *ngIf="isDataReady"
+></app-forecast>

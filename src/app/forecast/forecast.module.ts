@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { CarouselModule } from 'primeng/carousel';
 import { DropdownModule } from 'primeng/dropdown';
 import { TabMenuModule } from 'primeng/tabmenu';
 
@@ -25,7 +28,10 @@ import { WeatherComponent } from './weather/weather.component';
     HourlyDetailsComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    ButtonModule,
     CardModule,
+    CarouselModule,
     CommonModule,
     DropdownModule,
     FormsModule,

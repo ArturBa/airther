@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { WidthHelper } from 'src/app/helpers/width.helper';
 
 export enum HOURLY_SHOW {
   weather = 'Weather',
@@ -14,7 +15,6 @@ export class HourlyForecastComponent implements OnInit {
   @Input() weatherForecast: any[];
   @Input() airQualityForecast: any[];
 
-  readonly mdMaxWidth = 768; // px
   readonly HOURLY_SHOW = HOURLY_SHOW;
   hourlyShowDropdown = [];
 
@@ -22,9 +22,6 @@ export class HourlyForecastComponent implements OnInit {
 
   // TODO rename this variable
   currentShow = HOURLY_SHOW.weather;
-
-  // -1 means details should not be shown
-  detailsId = -1;
 
   constructor() {}
 
@@ -38,20 +35,32 @@ export class HourlyForecastComponent implements OnInit {
     });
   }
 
+  /**
+   * Update width on resize
+   * @param event window resize
+   */
   @HostListener('window:resize', ['$event'])
-  onResize(event): void {
+  protected onResize(event): void {
     this.innerWidth = window.innerWidth;
   }
 
+  /**
+   * Check if we are on small screen (mobile)
+   * @returns true if screen is small
+   */
   isSmallScreen(): boolean {
-    return this.innerWidth < this.mdMaxWidth;
+    return WidthHelper.isSmallScreen(this.innerWidth);
   }
 
+  /**
+   * Set current show
+   */
   setCurrentShow(newShow: HOURLY_SHOW): void {
     this.currentShow = newShow;
   }
 
-  toggleDetails(detailsId): void {
-    this.detailsId = detailsId;
-  }
+  /**
+   * Use for unsort the enum
+   */
+  unsorted(): void {}
 }

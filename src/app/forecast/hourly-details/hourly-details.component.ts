@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { HOURLY_SHOW } from '../hourly-forecast/hourly-forecast.component';
 
@@ -6,12 +7,12 @@ import { HOURLY_SHOW } from '../hourly-forecast/hourly-forecast.component';
   templateUrl: './hourly-details.component.html',
   styleUrls: ['./hourly-details.component.scss'],
 })
-export class HourlyDetailsComponent implements OnInit {
+export class HourlyDetailsComponent {
   @Input() showType: HOURLY_SHOW;
   @Input() weatherForecast: any;
   @Input() airQualityForecast: any;
 
-  constructor() {}
+  readonly HOURLY_SHOW = HOURLY_SHOW;
 
-  ngOnInit(): void {}
+  constructor() {}
 }
