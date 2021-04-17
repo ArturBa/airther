@@ -19,16 +19,30 @@ export enum HOURLY_SHOW {
   styleUrls: ['./hourly-switch.component.scss'],
 })
 export class HourlySwitchComponent implements OnInit {
+  /**
+   * Show type
+   */
   @Input() showType: HOURLY_SHOW;
+  /**
+   * Show type output binding
+   */
   @Output() showTypeChange = new EventEmitter<HOURLY_SHOW>();
 
+  /**
+   * HOURLY_SHOW enum copy for template
+   */
   readonly HOURLY_SHOW = HOURLY_SHOW;
+
+  /**
+   * Copy of a hourly show enum to a dropdown
+   */
   hourlyShowDropdown = [];
 
-  innerWidth: number;
+  protected innerWidth: number;
 
-  constructor() {}
-
+  /**
+   * Init component and, copy data to array for dropdown
+   */
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     Object.keys(HOURLY_SHOW).forEach((key) => {

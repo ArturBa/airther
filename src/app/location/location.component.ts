@@ -30,8 +30,15 @@ export class LocationComponent implements OnInit {
    */
   errorMsg = '';
 
+  /**
+   * Constructor
+   * @param owService OpenWeatherService
+   */
   constructor(protected owService: OpenWeatherService) {}
 
+  /**
+   * Init a component with a form group
+   */
   ngOnInit(): void {
     this.form = new FormGroup({
       city: new FormControl(''),

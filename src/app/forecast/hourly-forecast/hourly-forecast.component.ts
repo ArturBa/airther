@@ -5,6 +5,9 @@ import { ViewChild } from '@angular/core';
 import { HOURLY_SHOW } from '../hourly-switch/hourly-switch.component';
 import { WidthHelper } from '../../helpers/width.helper';
 
+/**
+ * Hourly forecast component
+ */
 @Component({
   selector: 'app-hourly-forecast',
   templateUrl: './hourly-forecast.component.html',
@@ -23,22 +26,42 @@ import { WidthHelper } from '../../helpers/width.helper';
   ],
 })
 export class HourlyForecastComponent {
+  /**
+   * Weather forecast object array
+   */
   @Input() weatherForecast: any[];
+  /**
+   * Air quality object array
+   */
   @Input() airQualityForecast: any[];
 
-  @ViewChild('details') detailsElem: ElementRef;
+  @ViewChild('details') protected detailsElem: ElementRef;
 
+  /**
+   * Hourly show enum copy to access on template
+   */
   readonly HOURLY_SHOW = HOURLY_SHOW;
 
-  // Null means details should not be shown
+  /**
+   * Details date to show
+   * If null no details are shown
+   */
   detailsDate: Date | null = null;
 
+  /**
+   * Current show type
+   */
   showType = HOURLY_SHOW.weather;
 
-  responsiveOptions = WidthHelper.responsiveOptions;
+  /**
+   * carrousel config copy to template
+   */
+  readonly responsiveOptions = WidthHelper.responsiveOptions;
 
-  constructor() {}
-
+  /**
+   * Get a forecast depending on current show type
+   * @returns forecast
+   */
   getForecast(): any[] {
     if (this.showType === HOURLY_SHOW.airQuality) {
       return this.airQualityForecast;
@@ -46,6 +69,11 @@ export class HourlyForecastComponent {
     return this.weatherForecast;
   }
 
+  /**
+   * Set a new date
+   * If new date is equal to a current, date is set to null
+   * @param date new date
+   */
   toggleDetails(date: Date): void {
     if (date === this.detailsDate) {
       this.detailsDate = null;
@@ -75,13 +103,25 @@ export class HourlyForecastComponent {
     }
   }
 
-  get weatherSelectedTime(): any {
+  /**
+   * Get a weather for details in selected time
+   */
+  get weatherSelectedTime(): any | null {
+    if (this.detailsDate === null) {
+      return null;
+    }
     return this.weatherForecast.filter(
       (forecast) => forecast.time === this.detailsDate
     )[0];
   }
 
-  get airQualitySelectedTime(): any {
+  /**
+   * Get a air quality for details in selected time
+   */
+  get airQualitySelectedTime(): any | null {
+    if (this.detailsDate === null) {
+      return null;
+    }
     return this.airQualityForecast.filter(
       (forecast) => forecast.time === this.detailsDate
     )[0];

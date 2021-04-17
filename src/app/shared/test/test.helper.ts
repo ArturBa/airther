@@ -1,11 +1,30 @@
 import { of } from 'rxjs';
 
+/**
+ * Test Helper with shared
+ */
 export class TestHelper {
+  /**
+   * def. date for tests
+   */
   static testDate = new Date(1618678998);
+
+  /**
+   * def. weather forecast
+   */
   static weatherForecast = [
     { time: TestHelper.testDate, temp: 100, rain: 10, description: 'nop' },
   ];
+
+  /**
+   * def. air quality forecast
+   */
   static airQualityForecast = [{ time: TestHelper.testDate }];
+
+  /**
+   * Generate a OpenWeatherService Mock
+   * @returns openWeatherServiceMock
+   */
   static openWeatherMock() {
     const openWeatherServiceMock = jasmine.createSpyObj(
       'OpenWeatherServiceMock',
@@ -22,6 +41,10 @@ export class TestHelper {
     return openWeatherServiceMock;
   }
 
+  /**
+   * Generate a IpAPiService Mock
+   * @returns ipAPiServiceMock
+   */
   static ipApiMock() {
     const IpApiServiceMock = jasmine.createSpyObj('IpApiService', [
       'getLocation',

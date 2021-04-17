@@ -23,13 +23,25 @@ export class DashboardComponent implements OnInit {
   weatherForecast = [];
   airQualityForecast = [];
 
+  /**
+   * Variable to check if data is ready
+   * To control loading component
+   */
   isDataReady = false;
 
+  /**
+   * Constructor
+   * @param ipApiService IpApiService
+   */
   constructor(protected ipApiService: IpApiService) { }
 
+  /**
+   * Init component, get user location and data for him
+   */
   async ngOnInit(): Promise<void> {
     await this.initLocation();
     this.updateData();
+    this.isDataReady = true;
   }
 
   // TODO: Remove
@@ -67,7 +79,6 @@ export class DashboardComponent implements OnInit {
 
   updateData(): void {
     this.updateWeatherForecast()
-    this.isDataReady = true;
   }
 
   /**
