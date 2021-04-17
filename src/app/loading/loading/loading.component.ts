@@ -13,7 +13,7 @@ export class LoadingComponent implements OnInit, OnDestroy {
    * is loading
    */
   longLoading = false;
-  protected timeout: NodeJS.Timeout;
+  protected timeout: ReturnType<typeof setTimeout>;
   protected longLoadingTimeMs = 5000;
 
   /**
