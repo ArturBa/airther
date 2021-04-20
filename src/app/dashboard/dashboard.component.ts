@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit {
   protected updateForecast(): void {
     this.setDataLoading();
 
-    this.requestForecastData(this.location.lon, this.location.lat).subscribe(
+    this.requestForecastData(this.location.lat, this.location.lon).subscribe(
       (data) => {
         if (data[0].length < 1) {
           // TODO: add error message
