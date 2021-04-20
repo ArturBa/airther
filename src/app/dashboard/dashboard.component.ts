@@ -96,26 +96,24 @@ export class DashboardComponent implements OnInit {
   protected updateForecast(): void {
     this.setDataLoading();
 
-    this.requestForecastData().subscribe((data) => {
-      if (data[0].length < 1) {
+    this.requestForecastData().subscribe(([weather, air]) => {
+      if (weather.length < 1) {
         // TODO: add error message
         return;
       }
       this.weatherForecast = {
-        forecast: data[0].hourly,
-        timezoneOffset: data[0].timezone_offset,
-        ...data[0],
+        forecast: weather.hourly,
+        timezoneOffset: weather.timezone_offset,
+        ...weather,
       };
 
-      const start = data[1].list.findIndex(
-        (x) => x.dt === data[0].hourly[0].dt
-      );
-      const end = data[1].list.findIndex(
-        (x) => x.dt === data[0].hourly[data[0].hourly.length - 1].dt
+      const start = air.list.findIndex((x) => x.dt === weather.hourly[0].dt);
+      const end = air.list.findIndex(
+        (x) => x.dt === weather.hourly[weather.hourly.length - 1].dt
       );
       this.airQualityForecast = {
-        forecast: data[1].list.slice(start, end + 1),
-        ...data[1],
+        forecast: air.list.slice(start, end + 1),
+        ...air,
       };
 
       this.setDataReady();
