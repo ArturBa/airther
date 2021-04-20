@@ -1,0 +1,42 @@
+@import '../../../styles/mixins';
+
+:host {
+  h2,
+  .content {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .temperature {
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    align-items: center;
+    > span:first-child {
+      font-size: 96px;
+      margin-bottom: 10px;
+    }
+  }
+  .details {
+    display: flex;
+    flex-direction: column;
+
+    > span:first-child {
+      font-size: 25px;
+      margin: auto 5px;
+    }
+  }
+
+  @include mobile {
+    .content {
+      flex-direction: column;
+    }
+  }
+}
