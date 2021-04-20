@@ -9,9 +9,11 @@ import { Weather } from '../../services/open-weather/open-weather.model';
 export class WeatherComponent {
   @Input() weatherForecast: Weather;
 
-  weather = {
-    temp: 6,
-    rain: 10,
-    description: 'Sunny intervals and a gentle breeze',
-  };
+  get rain(): number {
+    return this.weatherForecast?.rain?.['1h'] || 0;
+  }
+
+  get snow(): number {
+    return this.weatherForecast?.snow?.['1h'] || 0;
+  }
 }
