@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Weather } from '../../services/open-weather/open-weather.model';
 
 @Component({
   selector: 'app-weather',
@@ -6,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent {
-  @Input() weatherForecast: any[];
+  @Input() weatherForecast: Weather;
 
   weather = {
     temp: 6,

@@ -50,7 +50,7 @@ export class LocationComponent implements OnInit {
    * @returns true if city data is empty
    */
   isCityDataEmpty(): boolean {
-    return this.cityData.length === 0;
+    return !this.cityData?.length;
   }
 
   /**

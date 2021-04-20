@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  WeatherForecastModel,
-  AirQualityForecastModel,
+  AirQuality,
+  Weather,
 } from '../../services/open-weather/open-weather.model';
 
 @Component({
@@ -10,8 +10,8 @@ import {
   styleUrls: ['./forecast.component.scss'],
 })
 export class ForecastComponent implements OnInit {
-  @Input() weatherForecast: WeatherForecastModel;
-  @Input() airQualityForecast: AirQualityForecastModel;
+  @Input() weatherForecast: Weather[];
+  @Input() airQualityForecast: AirQuality[];
 
   constructor() {}
 

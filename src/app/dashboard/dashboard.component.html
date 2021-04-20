@@ -3,16 +3,10 @@
   (locationEvent)="updateLocation($event)"
 ></app-location>
 
-<hr />
-
-<!-- TODO Remove this section -->
-{{ this.location | json }}
-<hr />
-
 <app-loading *ngIf="!isDataReady"></app-loading>
 
 <app-forecast
   *ngIf="isDataReady"
-  [weatherForecast]="weatherForecast"
-  [airQualityForecast]="airQualityForecast"
+  [weatherForecast]="weatherForecast.forecast"
+  [airQualityForecast]="airQualityForecast.forecast"
 ></app-forecast>

@@ -128,7 +128,5 @@ export class WeatherForecastModel {
 export class AirQualityForecastModel {
   lat: number;
   lon: number;
-  timezone: string;
-  timezoneOffset: number;
   forecast: AirQuality[];
 }
