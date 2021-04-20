@@ -42,6 +42,10 @@ export class DashboardComponent implements OnInit {
     protected owService: OpenWeatherService
   ) {}
 
+  /**
+   * Init component
+   * Get user location and weather
+   */
   async ngOnInit(): Promise<void> {
     await this.initLocation();
     this.updateForecast();
@@ -63,15 +67,23 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /**
+   * Set data loading status
+   */
   protected setDataLoading(): void {
     this.isDataReady = false;
   }
+
+  /**
+   * Set data ready status
+   */
   protected setDataReady(): void {
     this.isDataReady = true;
   }
 
   /**
    * Update location of user by given address (in latitude and longitude)
+   * @param location: User location
    */
   updateLocation(location: Coord): void {
     this.location = location;
@@ -84,42 +96,43 @@ export class DashboardComponent implements OnInit {
   protected updateForecast(): void {
     this.setDataLoading();
 
-    this.requestForecastData(this.location.lon, this.location.lat).subscribe(
-      (data) => {
-        if (data[0].length < 1) {
-          // TODO: add error message
-          return;
-        }
-        this.weatherForecast = {
-          forecast: data[0].hourly,
-          timezoneOffset: data[0].timezone_offset,
-          ...data[0],
-        };
-
-        const start = data[1].list.findIndex(
-          (x) => x.dt === data[0].hourly[0].dt
-        );
-        const end = data[1].list.findIndex(
-          (x) => x.dt === data[0].hourly[data[0].hourly.length - 1].dt
-        );
-        this.airQualityForecast = {
-          forecast: data[1].list.slice(start, end + 1),
-          ...data[1],
-        };
-
-        this.setDataReady();
+    this.requestForecastData().subscribe((data) => {
+      if (data[0].length < 1) {
+        // TODO: add error message
+        return;
       }
-    );
+      this.weatherForecast = {
+        forecast: data[0].hourly,
+        timezoneOffset: data[0].timezone_offset,
+        ...data[0],
+      };
+
+      const start = data[1].list.findIndex(
+        (x) => x.dt === data[0].hourly[0].dt
+      );
+      const end = data[1].list.findIndex(
+        (x) => x.dt === data[0].hourly[data[0].hourly.length - 1].dt
+      );
+      this.airQualityForecast = {
+        forecast: data[1].list.slice(start, end + 1),
+        ...data[1],
+      };
+
+      this.setDataReady();
+    });
   }
 
-  protected requestForecastData(
-    latitude: number,
-    longitude: number
-  ): Observable<any[]> {
-    const weatherRequest = this.owService.getWeather(latitude, longitude);
+  /**
+   * Get Weather and Air Quality requests
+   */
+  protected requestForecastData(): Observable<any[]> {
+    const weatherRequest = this.owService.getWeather(
+      this.location.lat,
+      this.location.lon
+    );
     const airQualityRequest = this.owService.getAirForecast(
-      latitude,
-      longitude
+      this.location.lat,
+      this.location.lon
     );
     return forkJoin([weatherRequest, airQualityRequest]);
   }
