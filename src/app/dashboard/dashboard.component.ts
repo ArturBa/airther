@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { IpApiService } from '../services/ip-api/ip-api.service';
 import { OpenWeatherService } from '../services/open-weather/open-weather.service';
-import { ForecastModel } from '../services/open-weather/open-weather.model';
+import {
+  WeatherForecastModel,
+  AirQualityForecastModel,
+} from '../services/open-weather/open-weather.model';
 import { Observable, forkJoin } from 'rxjs';
 
 /**
@@ -16,15 +19,19 @@ export class DashboardComponent implements OnInit {
   /**
    * User location
    */
-  location = {};
+  location = { latitude: undefined, longitude: undefined };
   /**
    * User  city name
    */
   city = '';
   /**
-   * Forecast data
+   * Weather forecast data
    */
-  forecast: ForecastModel = new ForecastModel();
+  weatherForecast: WeatherForecastModel = new WeatherForecastModel();
+  /**
+   * Air quality forecast data
+   */
+  airQualityForecast: AirQualityForecastModel = new AirQualityForecastModel();
 
   isDataReady = false;
 
@@ -34,8 +41,8 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.updateData();
-    await this.initLocation;
+    await this.initLocation();
+    this.updateForecast(this.location.latitude, this.location.longitude);
   }
 
   /**
@@ -62,9 +69,11 @@ export class DashboardComponent implements OnInit {
    * Update location of user by given address (in latitude and longitude)
    */
   updateLocation(location: { latitude: number; longitude: number }): void {
+    this.isDataReady = false;
     this.location = location;
     // TODO: remove
     this.city = (location.latitude as unknown) as string;
+    this.updateForecast(this.location.latitude, this.location.longitude);
   }
 
   /**
@@ -76,28 +85,30 @@ export class DashboardComponent implements OnInit {
         // TODO: add error message
         return;
       }
+      this.weatherForecast.lat = data[0].lat;
+      this.weatherForecast.lon = data[0].lon;
+      this.weatherForecast.timezone = data[0].timezone;
+      this.weatherForecast.timezoneOffset = data[0].timezone_offset;
+      this.weatherForecast.forecast = data[0].hourly;
 
-      this.forecast.lat = data[0].lat;
-      this.forecast.lon = data[0].lon;
-      this.forecast.timezone = data[0].timezone;
-      this.forecast.timezoneOffset = data[0].timezone_offset;
-      this.forecast.currentWeather = data[0].current;
-      this.forecast.currentAir = data[1].list[0];
-      this.forecast.hourlyWeather = data[0].hourly.slice(1);
-      const start = data[2].list.findIndex(
-        (x) => x.dt === data[0].hourly[1].dt
+      const start = data[1].list.findIndex(
+        (x) => x.dt === data[0].hourly[0].dt
       );
-      const end = data[2].list.findIndex(
+      const end = data[1].list.findIndex(
         (x) => x.dt === data[0].hourly[data[0].hourly.length - 1].dt
       );
-      this.forecast.hourlyAir = data[2].list.slice(start, end + 1);
+      this.airQualityForecast.lat = data[0].lat;
+      this.airQualityForecast.lon = data[0].lon;
+      this.airQualityForecast.timezone = data[0].timezone;
+      this.airQualityForecast.timezoneOffset = data[0].timezone_offset;
+      this.airQualityForecast.forecast = data[1].list.slice(start, end + 1);
     });
+    this.updateData();
   }
 
   requestForecastData(latitude: number, longitude: number): Observable<any[]> {
     const response1 = this.owService.getWeather(latitude, longitude);
-    const response2 = this.owService.getCurrentAir(latitude, longitude);
-    const response3 = this.owService.getAirForecast(latitude, longitude);
-    return forkJoin([response1, response2, response3]);
+    const response2 = this.owService.getAirForecast(latitude, longitude);
+    return forkJoin([response1, response2]);
   }
 }

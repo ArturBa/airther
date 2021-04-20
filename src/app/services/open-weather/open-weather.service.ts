@@ -35,18 +35,6 @@ export class OpenWeatherService {
   }
 
   /**
-   * Get current air quality in openweather api standard for given coords
-   * @param lat latitude
-   * @param lon longitude
-   * @returns current air quality
-   */
-  getCurrentAir(lat: number, lon: number): Observable<FullAir> {
-    return this.httpClient.get<FullAir>(
-      this.enterCoord(lat, lon, API_URL.air_current)
-    );
-  }
-
-  /**
    * Get air quality forecast in openweather api standard for given coords
    * @param lat latitude
    * @param lon longitude

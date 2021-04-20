@@ -17,7 +17,6 @@ export interface FullWeather {
   lon: number;
   timezone: string;
   timezone_offset: number;
-  current: Weather;
   hourly: Weather[];
 }
 
@@ -113,15 +112,23 @@ export interface Components {
 }
 
 /**
- * Open api Forecast interface
+ * Open api weatherForecast model
  */
-export class ForecastModel {
+export class WeatherForecastModel {
   lat: number;
   lon: number;
   timezone: string;
   timezoneOffset: number;
-  currentWeather: Weather;
-  currentAir: AirQuality;
-  hourlyWeather: Weather[];
-  hourlyAir: AirQuality[];
+  forecast: Weather[];
+}
+
+/**
+ * Open api weatherForecast model
+ */
+export class AirQualityForecastModel {
+  lat: number;
+  lon: number;
+  timezone: string;
+  timezoneOffset: number;
+  forecast: AirQuality[];
 }

@@ -9,11 +9,7 @@ export const API_URL = {
     environment.weatherapi.apiKey,
   weather:
     'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}' +
-    '&exclude=minutely,daily,alerts&units=metric&appid=' +
-    environment.weatherapi.apiKey,
-  air_current:
-    'https://api.openweathermap.org/data/2.5/air_pollution?' +
-    'lat={lat}&lon={lon}&appid=' +
+    '&exclude=current,minutely,daily,alerts&units=metric&appid=' +
     environment.weatherapi.apiKey,
   air_forecast:
     'https://api.openweathermap.org/data/2.5/air_pollution/forecast?' +
