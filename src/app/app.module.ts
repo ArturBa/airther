@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LocationModule } from './location/location.module';
-import { PrimeModule } from './prime.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,10 +15,8 @@ import { PrimeModule } from './prime.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    PrimeModule,
     FormsModule,
     HttpClientModule,
-
     DashboardModule,
     LocationModule,
   ],

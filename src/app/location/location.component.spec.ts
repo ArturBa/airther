@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardModule } from 'primeng/card';
+
 import { OpenWeatherService } from '../services/open-weather/open-weather.service';
+import { TestHelper } from '../shared/test/test.helper';
 
 import { LocationComponent } from './location.component';
 
@@ -8,22 +11,12 @@ describe('LocationComponent', () => {
   let component: LocationComponent;
   let fixture: ComponentFixture<LocationComponent>;
 
-  const openWeatherServiceMock = jasmine.createSpyObj(
-    'OpenWeatherServiceMock',
-    ['getLocation']
-  );
-  openWeatherServiceMock.getLocation.and.returnValue(
-    of([
-      {
-        lat: 0,
-        lon: 0,
-      },
-    ])
-  );
+  const openWeatherServiceMock = TestHelper.openWeatherMock();
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LocationComponent],
+      imports: [CardModule, FormsModule, ReactiveFormsModule],
       providers: [
         { provide: OpenWeatherService, useValue: openWeatherServiceMock },
       ],

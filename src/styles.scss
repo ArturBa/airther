@@ -1,10 +1,20 @@
+@import url('styles/weather-icons.css');
+@import url('styles/weather-icons-custom.scss');
+
 /* You can add global styles to this file, and also import other style files */
 body {
   margin: 0;
   background-color: #f8f9fa;
+  margin-bottom: 5rem;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+// Hide a indicator of a carousel
+.p-carousel .p-carousel-indicators {
+  padding: 1rem;
+  display: none;
 }

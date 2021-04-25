@@ -1,34 +1,36 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { ForecastModule } from '../forecast/forecast.module';
 import { IpApiService } from '../services/ip-api/ip-api.service';
+import { LoadingModule } from '../loading/loading.module';
+import { LocationModule } from '../location/location.module';
 import { OpenWeatherService } from '../services/open-weather/open-weather.service';
+import { TestHelper } from '../shared/test/test.helper';
 
 import { DashboardComponent } from './dashboard.component';
+import { CommonModule } from '@angular/common';
 
 xdescribe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
-  const IpApiServiceMock = jasmine.createSpyObj('IpApiService', [
-    'getLocation',
-  ]);
-  IpApiServiceMock.getLocation.and.returnValue(
-    of([
-      {
-        county: 'PL',
-        city: 'Krk',
-        latitude: 0,
-        longitude: 0,
-      },
-    ])
-  );
+  const IpApiServiceMock = TestHelper.ipApiMock();
+  const OpenWeatherServiceMock = TestHelper.openWeatherMock();
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
+      imports: [
+        CommonModule,
+        ForecastModule,
+        LoadingModule,
+        LocationModule,
+        HttpClientTestingModule,
+      ],
       providers: [
         { provide: IpApiService, useValue: IpApiServiceMock },
-        OpenWeatherService,
+        { provide: OpenWeatherService, useValue: OpenWeatherServiceMock },
       ],
     }).compileComponents();
   });

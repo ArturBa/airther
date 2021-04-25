@@ -1,0 +1,21 @@
+<div *ngIf="isSmallScreen()">
+  <p-dropdown
+    [options]="hourlyShowDropdown"
+    [(ngModel)]="showType"
+    optionLabel="value"
+    optionValue="value"
+    autoWidth="false"
+    [style]="{ width: '100%' }"
+  ></p-dropdown>
+</div>
+
+<div *ngIf="!isSmallScreen()" class="p-grid">
+  <h3
+    *ngFor="let show of HOURLY_SHOW | keyvalue: unsorted"
+    class="pc-data-selection p-col-6"
+    [class.selected]="showType === show.value"
+    (click)="setCurrentShow(show.value)"
+  >
+    {{ show.value }}
+  </h3>
+</div>
