@@ -13,6 +13,7 @@ import { HourlyForecastComponent } from '../hourly-forecast/hourly-forecast.comp
 import { WeatherComponent } from '../weather/weather.component';
 
 import { ForecastComponent } from './forecast.component';
+import { TestHelper } from 'src/app/shared/test/test.helper';
 
 describe('ForecastComponent', () => {
   let component: ForecastComponent;
@@ -43,8 +44,8 @@ describe('ForecastComponent', () => {
     fixture = TestBed.createComponent(ForecastComponent);
     component = fixture.componentInstance;
 
-    component.airQualityForecast = ['a', 'b'];
-    component.weatherForecast = ['a', 'b'];
+    component.airQualityForecast = TestHelper.airQualityForecast;
+    component.weatherForecast = TestHelper.weatherForecast;
     fixture.detectChanges();
   });
 

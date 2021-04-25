@@ -1,5 +1,8 @@
-import { trigger, transition, style, animate } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import {
+  AirQuality,
+  Weather,
+} from 'src/app/services/open-weather/open-weather.model';
 import { HOURLY_SHOW } from '../hourly-switch/hourly-switch.component';
 
 /**
@@ -18,11 +21,11 @@ export class HourlyDetailsComponent {
   /**
    * Weather forecast to show, is show type is WEATHER
    */
-  @Input() weatherForecast: any;
+  @Input() weatherForecast: Weather;
   /**
    * Air quality forecast to show, is show type is AIR QUALITY
    */
-  @Input() airQualityForecast: any;
+  @Input() airQualityForecast: AirQuality;
 
   readonly HOURLY_SHOW = HOURLY_SHOW;
 }

@@ -126,7 +126,7 @@ export class WeatherForecastModel {
  * Open api weatherForecast model
  */
 export class AirQualityForecastModel {
-  lat: number;
-  lon: number;
+  lat?: number;
+  lon?: number;
   forecast: AirQuality[];
 }

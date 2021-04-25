@@ -4,6 +4,8 @@ import { Observable, forkJoin } from 'rxjs';
 import {
   AirQualityForecastModel,
   Coord,
+  FullAir,
+  FullWeather,
   WeatherForecastModel,
 } from '../services/open-weather/open-weather.model';
 import { IpApiService } from '../services/ip-api/ip-api.service';
@@ -106,7 +108,7 @@ export class DashboardComponent implements OnInit {
     this.setDataLoading();
 
     this.requestForecastData().subscribe(([weather, air]) => {
-      if (weather.length < 1) {
+      if (weather.hourly.length < 1) {
         // TODO: add error message
         return;
       }
@@ -132,7 +134,7 @@ export class DashboardComponent implements OnInit {
   /**
    * Get Weather and Air Quality requests
    */
-  protected requestForecastData(): Observable<any[]> {
+  protected requestForecastData(): Observable<[FullWeather, FullAir]> {
     const weatherRequest = this.owService.getWeather(
       this.location.lat,
       this.location.lon

@@ -19,7 +19,7 @@ describe('HourlyDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HourlyDetailsComponent);
     component = fixture.componentInstance;
-    component.weatherForecast = TestHelper.weatherForecast;
+    component.weatherForecast = TestHelper.weatherForecast[0];
     fixture.detectChanges();
   });
 

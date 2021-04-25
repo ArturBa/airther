@@ -1,14 +1,10 @@
-import { componentFactoryName } from '@angular/compiler';
 import {
   ComponentFixture,
   fakeAsync,
   TestBed,
   tick,
 } from '@angular/core/testing';
-import {
-  BrowserAnimationsModule,
-  NoopAnimationsModule,
-} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { TestHelper } from 'src/app/shared/test/test.helper';
@@ -20,7 +16,7 @@ import {
 
 import { HourlyForecastComponent } from './hourly-forecast.component';
 
-describe('HourlySingleComponent', () => {
+describe('HourlyForecastComponent', () => {
   let component: HourlyForecastComponent;
   let fixture: ComponentFixture<HourlyForecastComponent>;
 
@@ -85,6 +81,10 @@ describe('HourlySingleComponent', () => {
   });
 
   describe('in set time', () => {
+    beforeEach(() => {
+      component.detailsDate = TestHelper.testDate;
+      fixture.detectChanges();
+    });
     it('should return a elem from weather', () => {
       expect(component.weatherSelectedTime).toEqual(
         TestHelper.weatherForecast[0]

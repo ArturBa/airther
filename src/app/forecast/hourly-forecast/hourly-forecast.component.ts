@@ -4,6 +4,10 @@ import { ViewChild } from '@angular/core';
 
 import { HOURLY_SHOW } from '../hourly-switch/hourly-switch.component';
 import { WidthHelper } from '../../helpers/width.helper';
+import {
+  AirQuality,
+  Weather,
+} from '../../services/open-weather/open-weather.model';
 
 /**
  * Hourly forecast component
@@ -29,11 +33,11 @@ export class HourlyForecastComponent {
   /**
    * Weather forecast object array
    */
-  @Input() weatherForecast: any[];
+  @Input() weatherForecast: Weather[];
   /**
    * Air quality object array
    */
-  @Input() airQualityForecast: any[];
+  @Input() airQualityForecast: AirQuality[];
 
   @ViewChild('details') protected detailsElem: ElementRef;
 
@@ -62,7 +66,7 @@ export class HourlyForecastComponent {
    * Get a forecast depending on current show type
    * @returns forecast
    */
-  getForecast(): any[] {
+  getForecast(): Weather[] | AirQuality[] {
     if (this.showType === HOURLY_SHOW.airQuality) {
       return this.airQualityForecast;
     }
@@ -106,24 +110,26 @@ export class HourlyForecastComponent {
   /**
    * Get a weather for details in selected time
    */
-  get weatherSelectedTime(): any | null {
+  get weatherSelectedTime(): Weather | null {
     if (this.detailsDate === null) {
+      // console.log(this.weatherForecast)
       return null;
     }
+    // console.dir(this.weatherForecast, this.detailsDate)
     return this.weatherForecast.filter(
-      (forecast) => forecast.time === this.detailsDate
+      (forecast) => forecast.dt === this.detailsDate.valueOf()
     )[0];
   }
 
   /**
    * Get a air quality for details in selected time
    */
-  get airQualitySelectedTime(): any | null {
+  get airQualitySelectedTime(): AirQuality | null {
     if (this.detailsDate === null) {
       return null;
     }
     return this.airQualityForecast.filter(
-      (forecast) => forecast.time === this.detailsDate
+      (forecast) => forecast.dt === this.detailsDate.valueOf()
     )[0];
   }
 }

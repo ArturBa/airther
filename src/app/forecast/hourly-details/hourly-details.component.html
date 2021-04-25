@@ -1,7 +1,7 @@
 <p-card>
-  <div *ngIf="showType === HOURLY_SHOW.weather">
+  <div *ngIf="showType === HOURLY_SHOW.weather && weatherForecast">
     <span>
-      {{ weatherForecast.description }}
+      {{ weatherForecast.weather.description }}
     </span>
     <span [innerHTML]="'Perceived: ' + weatherForecast.temp + '&deg'"> </span>
     <div class="p-grid">

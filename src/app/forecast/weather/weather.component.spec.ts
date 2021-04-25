@@ -2,6 +2,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardModule } from 'primeng/card';
+import { TestHelper } from 'src/app/shared/test/test.helper';
 import { TitleValueComponent } from 'src/app/shared/title-value/title-value.component';
 
 import { WeatherComponent } from './weather.component';
@@ -20,7 +21,7 @@ describe('WeatherComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WeatherComponent);
     component = fixture.componentInstance;
-    component.weatherForecast = { temp: 0, rain: 10 };
+    component.weatherForecast = TestHelper.weatherForecast[0];
     fixture.detectChanges();
   });
 
