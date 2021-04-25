@@ -16,7 +16,7 @@
       </div>
 
       <div *ngIf="showType === HOURLY_SHOW.weather" class="weather">
-        <span [innerHTML]="forecast.temp + '&deg'"> </span>
+        <span [innerHTML]="(forecast.temp | number: '1.0-0') + '&deg'"> </span>
         <i class="wi wi-night-sleet wi-large"></i>
       </div>
 

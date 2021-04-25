@@ -1,4 +1,8 @@
 import { Component, Input } from '@angular/core';
+import {
+  AirQuality,
+  Weather,
+} from '../../services/open-weather/open-weather.model';
 
 /**
  * Forecast component
@@ -9,12 +13,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./forecast.component.scss'],
 })
 export class ForecastComponent {
-  /**
-   * Weather forecast data
-   */
-  @Input() weatherForecast: any[];
-  /**
-   * Air quality forecast data
-   */
-  @Input() airQualityForecast: any[];
+  @Input() weatherForecast: Weather[];
+  @Input() airQualityForecast: AirQuality[];
 }
