@@ -18,7 +18,7 @@
   </div>
 </div>
 {{ currentShow | json }}
-<div>
+<!-- <div>
   <div>Arrow left</div>
   <app-hourly-single
     *ngFor="let _ of weatherForecast; let i = index"
@@ -28,6 +28,6 @@
     (toggleDetails)="toggleDetails(i)"
   ></app-hourly-single>
   <div>Arrow right</div>
-</div>
+</div> -->
 
 <app-hourly-details *ngIf="detailsId !== -1"></app-hourly-details>

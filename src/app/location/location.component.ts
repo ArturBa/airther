@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
+import { Coord } from '../services/open-weather/open-weather.model';
 import { OpenWeatherService } from '../services/open-weather/open-weather.service';
 
 /**
@@ -15,7 +16,7 @@ export class LocationComponent implements OnInit {
   /**
    * Output event if Latitude/Longitude defined
    */
-  @Output() locationEvent = new EventEmitter();
+  @Output() locationEvent = new EventEmitter<Coord>();
   /**
    * Input cityData{string} for a city name for weather location
    */
@@ -50,7 +51,7 @@ export class LocationComponent implements OnInit {
    * @returns true if city data is empty
    */
   isCityDataEmpty(): boolean {
-    return this.cityData.length === 0;
+    return !this.cityData?.length;
   }
 
   /**
@@ -115,7 +116,7 @@ export class LocationComponent implements OnInit {
     this.errorMsg = '';
   }
 
-  protected emitLocation(latitude: number, longitude: number): void {
-    this.locationEvent.emit({ latitude, longitude });
+  protected emitLocation(lat: number, lon: number): void {
+    this.locationEvent.emit({ lat, lon } as Coord);
   }
 }
