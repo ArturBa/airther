@@ -1,6 +1,7 @@
 import { of } from 'rxjs';
+import { AirQualityComponent } from 'src/app/forecast/models/air-quality-component.model';
+import { AirQuality } from 'src/app/forecast/models/air-quality.model';
 import {
-  AirQuality,
   AQI,
   Components,
   Description,
@@ -51,16 +52,7 @@ export class TestHelper {
     },
   ];
 
-  static airQualityComponent: Components = {
-    co: 0,
-    no: 0,
-    no2: 0,
-    o3: 0,
-    so2: 0,
-    pm2_5: 0,
-    pm10: 0,
-    nh3: 0,
-  };
+  static airQualityComponent: AirQualityComponent[] = [];
   static airQualityMain: AQI = {
     aqi: 10000,
   };
@@ -69,9 +61,10 @@ export class TestHelper {
    */
   static airQualityForecast: AirQuality[] = [
     {
-      dt: TestHelper.testDate.valueOf(),
+      time: TestHelper.testDate.valueOf(),
       components: TestHelper.airQualityComponent,
-      main: TestHelper.airQualityMain,
+      index: 1,
+      indexImageUrl: '',
     },
   ];
 

@@ -8,8 +8,11 @@ import { environment } from 'src/environments/environment';
 import { Coordinates } from 'src/app/shared/models/coordinates.model';
 import { AirQuality } from 'src/app/forecast/models/air-quality.model';
 import { AirQualityMapper } from './air-quality-mapper';
-import { AirQualityApiDto } from './air-quality-api-dto.model';
-import { CityLocation, FullWeather, FullAir } from './open-weather.model';
+import {
+  CityLocation,
+  FullWeather,
+  AirQualityApiDto,
+} from './open-weather.model';
 
 @Injectable({
   providedIn: 'root',

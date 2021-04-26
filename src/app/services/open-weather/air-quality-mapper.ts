@@ -1,6 +1,6 @@
 import { AirQuality } from 'src/app/forecast/models/air-quality.model';
 import { AirQualityIndexEnum } from 'src/app/shared/enums/air-quality-index.enum';
-import { AirQualityDto } from './air-quality-api-dto.model';
+import { AirQualityDto } from './open-weather.model';
 
 export abstract class AirQualityMapper {
   private static readonly airQualityStandards: Map<string, number> = new Map<
