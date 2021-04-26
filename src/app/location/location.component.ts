@@ -51,7 +51,7 @@ export class LocationComponent implements OnInit {
    * @returns Return true if empty
    */
   isFormEmpty(): boolean {
-    return this.getCityForm().value.length === 0;
+    return !this.getCityForm().value?.length;
   }
 
   /**

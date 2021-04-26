@@ -108,7 +108,7 @@ export class DashboardComponent implements OnInit {
     this.setDataLoading();
 
     this.requestForecastData().subscribe(([weather, air]) => {
-      if (weather.hourly.length < 1) {
+      if (weather.hourly?.length < 1) {
         // TODO: add error message
         return;
       }
