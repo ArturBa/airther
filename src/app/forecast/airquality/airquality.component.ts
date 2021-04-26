@@ -8,10 +8,10 @@ import { AirQuality } from '../models/air-quality.model';
   styleUrls: ['./airquality.component.scss'],
 })
 export class AirqualityComponent implements OnInit {
-  @Input() airQuality: AirQuality;
+  @Input() airQualityForecast: AirQuality;
 
   get airQualityIndexName(): string {
-    return AirQualityIndexEnum[this.airQuality.index];
+    return AirQualityIndexEnum[this.airQualityForecast.index];
   }
 
   constructor() {}

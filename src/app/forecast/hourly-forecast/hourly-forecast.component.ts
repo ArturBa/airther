@@ -4,10 +4,8 @@ import { ViewChild } from '@angular/core';
 
 import { HOURLY_SHOW } from '../hourly-switch/hourly-switch.component';
 import { WidthHelper } from '../../helpers/width.helper';
-import {
-  AirQuality,
-  Weather,
-} from '../../services/open-weather/open-weather.model';
+import { Weather } from '../../services/open-weather/open-weather.model';
+import { AirQuality } from '../models/air-quality.model';
 
 /**
  * Hourly forecast component
@@ -129,7 +127,7 @@ export class HourlyForecastComponent {
       return null;
     }
     return this.airQualityForecast.filter(
-      (forecast) => forecast.dt === this.detailsDate.valueOf()
+      (forecast) => forecast.timeStamp === this.detailsDate.valueOf()
     )[0];
   }
 }

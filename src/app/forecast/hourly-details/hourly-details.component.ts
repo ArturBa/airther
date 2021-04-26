@@ -1,9 +1,7 @@
 import { Component, Input } from '@angular/core';
-import {
-  AirQuality,
-  Weather,
-} from 'src/app/services/open-weather/open-weather.model';
+import { Weather } from 'src/app/services/open-weather/open-weather.model';
 import { HOURLY_SHOW } from '../hourly-switch/hourly-switch.component';
+import { AirQuality } from '../models/air-quality.model';
 
 /**
  * Hourly details component

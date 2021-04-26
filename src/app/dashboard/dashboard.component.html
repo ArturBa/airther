@@ -1,7 +1,7 @@
-<app-location
-  [cityData]="city"
-  (locationEvent)="updateLocation($event)"
-></app-location>
+<div class="p-mb-4">
+  <app-location [cityData]="city" (locationEvent)="updateLocation($event)">
+  </app-location>
+</div>
 
 <app-loading *ngIf="!isDataReady"></app-loading>
 

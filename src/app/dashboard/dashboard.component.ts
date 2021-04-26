@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 
 import {
+  AirQualityApiDto,
   AirQualityForecastModel,
   Coord,
-  FullAir,
   FullWeather,
   WeatherForecastModel,
 } from '../services/open-weather/open-weather.model';
 import { IpApiService } from '../services/ip-api/ip-api.service';
 import { OpenWeatherService } from '../services/open-weather/open-weather.service';
+import { AirQualityMapper } from '../services/open-weather/air-quality-mapper';
 
 /**
  * Dashboard of the app
@@ -123,7 +124,9 @@ export class DashboardComponent implements OnInit {
         (x) => x.dt === weather.hourly[weather.hourly.length - 1].dt
       );
       this.airQualityForecast = {
-        forecast: air.list.slice(start, end + 1),
+        forecast: air.list
+          .slice(start, end + 1)
+          .map((a) => AirQualityMapper.Map(a)),
         ...air,
       };
 
@@ -134,7 +137,7 @@ export class DashboardComponent implements OnInit {
   /**
    * Get Weather and Air Quality requests
    */
-  protected requestForecastData(): Observable<[FullWeather, FullAir]> {
+  protected requestForecastData(): Observable<[FullWeather, AirQualityApiDto]> {
     const weatherRequest = this.owService.getWeather(
       this.location.lat,
       this.location.lon

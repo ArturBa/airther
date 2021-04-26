@@ -64,8 +64,8 @@ export class OpenWeatherService {
    * @param lon longitude
    * @returns air quality forecast
    */
-  getAirForecast(lat: number, lon: number): Observable<FullAir> {
-    return this.httpClient.get<FullAir>(
+  getAirForecast(lat: number, lon: number): Observable<AirQualityApiDto> {
+    return this.httpClient.get<AirQualityApiDto>(
       this.enterCoord(lat, lon, API_URL.air_forecast)
     );
   }
