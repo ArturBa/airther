@@ -1,4 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+
+import { ButtonModule } from 'primeng/button';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { LoadingComponent } from './loading.component';
 
@@ -9,6 +18,7 @@ describe('LoadingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoadingComponent],
+      imports: [ProgressSpinnerModule, ButtonModule],
     }).compileComponents();
   });
 
@@ -21,4 +31,14 @@ describe('LoadingComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set long loading after certain time', fakeAsync(() => {
+    tick(5001);
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      const popUpWindow = fixture.debugElement.query(By.css('#popup-window'));
+      expect(component.longLoading).toBeTrue();
+    });
+  }));
 });

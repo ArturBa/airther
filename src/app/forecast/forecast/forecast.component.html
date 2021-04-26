@@ -1,11 +1,11 @@
 <div class="p-grid">
   <app-weather
     class="p-col-12 p-md-7"
-    [weatherForecast]="weatherForecast"
+    [weatherForecast]="weatherForecast[0]"
   ></app-weather>
   <app-airquality
     class="p-col-12 p-md-5"
-    [airQuality]="airQuality"
+    [airQuality]="airQualityForecast[0]"
   ></app-airquality>
 
   <app-hourly-forecast

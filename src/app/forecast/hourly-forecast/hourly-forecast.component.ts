@@ -1,57 +1,135 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { ViewChild } from '@angular/core';
 
-export enum HOURLY_SHOW {
-  weather = 'Weather',
-  airQuality = 'Air Quality',
-}
+import { HOURLY_SHOW } from '../hourly-switch/hourly-switch.component';
+import { WidthHelper } from '../../helpers/width.helper';
+import {
+  AirQuality,
+  Weather,
+} from '../../services/open-weather/open-weather.model';
 
+/**
+ * Hourly forecast component
+ */
 @Component({
   selector: 'app-hourly-forecast',
   templateUrl: './hourly-forecast.component.html',
   styleUrls: ['./hourly-forecast.component.scss'],
+  animations: [
+    trigger('inOutAnimation', [
+      transition(':enter', [
+        style({ height: 0, opacity: 0 }),
+        animate('1s ease-out', style({ height: 300, opacity: 1 })),
+      ]),
+      transition(':leave', [
+        style({ height: 300, opacity: 1 }),
+        animate('1s ease-in', style({ height: 0, opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
-export class HourlyForecastComponent implements OnInit {
-  @Input() weatherForecast: any[];
-  @Input() airQualityForecast: any[];
+export class HourlyForecastComponent {
+  /**
+   * Weather forecast object array
+   */
+  @Input() weatherForecast: Weather[];
+  /**
+   * Air quality object array
+   */
+  @Input() airQualityForecast: AirQuality[];
 
-  readonly mdMaxWidth = 768; // px
+  @ViewChild('details') protected detailsElem: ElementRef;
+
+  /**
+   * Hourly show enum copy to access on template
+   */
   readonly HOURLY_SHOW = HOURLY_SHOW;
-  hourlyShowDropdown = [];
 
-  innerWidth: number;
+  /**
+   * Details date to show
+   * If null no details are shown
+   */
+  detailsDate: Date | null = null;
 
-  // TODO rename this variable
-  currentShow = HOURLY_SHOW.weather;
+  /**
+   * Current show type
+   */
+  showType = HOURLY_SHOW.weather;
 
-  // -1 means details should not be shown
-  detailsId = -1;
+  /**
+   * carrousel config copy to template
+   */
+  readonly responsiveOptions = WidthHelper.responsiveOptions;
 
-  constructor() {}
-
-  ngOnInit(): void {
-    this.innerWidth = window.innerWidth;
-    Object.keys(HOURLY_SHOW).forEach((key) => {
-      this.hourlyShowDropdown = [
-        { value: HOURLY_SHOW[key] },
-        ...this.hourlyShowDropdown,
-      ];
-    });
+  /**
+   * Get a forecast depending on current show type
+   * @returns forecast
+   */
+  getForecast(): Weather[] | AirQuality[] {
+    if (this.showType === HOURLY_SHOW.airQuality) {
+      return this.airQualityForecast;
+    }
+    return this.weatherForecast;
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event): void {
-    this.innerWidth = window.innerWidth;
+  /**
+   * Set a new date
+   * If new date is equal to a current, date is set to null
+   * @param date new date
+   */
+  toggleDetails(date: Date): void {
+    if (date === this.detailsDate) {
+      this.detailsDate = null;
+      const currentScroll =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      setTimeout(
+        () =>
+          window.scrollBy({
+            top: -this.detailsElem.nativeElement.offsetHeight,
+            behavior: 'smooth',
+          }),
+        200
+      );
+    } else if (this.detailsDate === null) {
+      this.detailsDate = date;
+      setTimeout(
+        () =>
+          this.detailsElem.nativeElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          }),
+        300
+      );
+    } else {
+      this.detailsDate = date;
+    }
   }
 
-  isSmallScreen(): boolean {
-    return this.innerWidth < this.mdMaxWidth;
+  /**
+   * Get a weather for details in selected time
+   */
+  get weatherSelectedTime(): Weather | null {
+    if (this.detailsDate === null) {
+      // console.log(this.weatherForecast)
+      return null;
+    }
+    // console.dir(this.weatherForecast, this.detailsDate)
+    return this.weatherForecast.filter(
+      (forecast) => forecast.dt === this.detailsDate.valueOf()
+    )[0];
   }
 
-  setCurrentShow(newShow: HOURLY_SHOW): void {
-    this.currentShow = newShow;
-  }
-
-  toggleDetails(detailsId): void {
-    this.detailsId = detailsId;
+  /**
+   * Get a air quality for details in selected time
+   */
+  get airQualitySelectedTime(): AirQuality | null {
+    if (this.detailsDate === null) {
+      return null;
+    }
+    return this.airQualityForecast.filter(
+      (forecast) => forecast.dt === this.detailsDate.valueOf()
+    )[0];
   }
 }
