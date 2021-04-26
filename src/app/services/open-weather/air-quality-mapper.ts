@@ -31,7 +31,7 @@ export abstract class AirQualityMapper {
 
   static Map(airQuality: AirQualityDto): AirQuality {
     return {
-      timeStamp: airQuality.dt,
+      time: airQuality.dt,
       index: airQuality.main.aqi,
       indexImageUrl: this.airQualityIndexImages.get(airQuality.main.aqi),
       components: [

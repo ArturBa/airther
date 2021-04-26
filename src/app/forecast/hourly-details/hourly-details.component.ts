@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { WidthHelper } from 'src/app/helpers/width.helper';
 import { Weather } from 'src/app/services/open-weather/open-weather.model';
 import { HOURLY_SHOW } from '../hourly-switch/hourly-switch.component';
 import { AirQuality } from '../models/air-quality.model';
@@ -11,7 +12,7 @@ import { AirQuality } from '../models/air-quality.model';
   templateUrl: './hourly-details.component.html',
   styleUrls: ['./hourly-details.component.scss'],
 })
-export class HourlyDetailsComponent {
+export class HourlyDetailsComponent implements OnInit {
   /**
    * Show type, on this depends a show type
    */
@@ -26,4 +27,26 @@ export class HourlyDetailsComponent {
   @Input() airQualityForecast: AirQuality;
 
   readonly HOURLY_SHOW = HOURLY_SHOW;
+  innerWidth: number;
+
+  ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+  }
+
+  /**
+   * Update width on resize
+   * @param event window resize
+   */
+  @HostListener('window:resize', ['$event'])
+  protected onResize(event): void {
+    this.innerWidth = window.innerWidth;
+  }
+
+  /**
+   * Check if we are on small screen (mobile)
+   * @returns true if screen is small
+   */
+  isSmallScreen(): boolean {
+    return WidthHelper.isSmallScreen(this.innerWidth);
+  }
 }
