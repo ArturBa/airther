@@ -12,12 +12,13 @@
       <div class="header">
         <h2>
           {{ forecast.time * 1000 | date: 'H:mm' }}
+          {{ forecast.dt * 1000 | date: 'H:mm' }}
         </h2>
       </div>
 
       <div *ngIf="showType === HOURLY_SHOW.weather" class="weather">
         <span [innerHTML]="(forecast.temp | number: '1.0-0') + '&deg'"> </span>
-        <i class="wi wi-night-sleet wi-large"></i>
+        <i [class]="'wi wi-large ' + getIcon(forecast)"></i>
       </div>
 
       <div *ngIf="showType === HOURLY_SHOW.airQuality">
@@ -34,8 +35,10 @@
           type="button"
           icon="pi pi-chevron-down"
           class="p-button-rounded p-button-text p-button-plain"
-          (click)="toggleDetails(forecast.time)"
-          [class.rotate]="detailsDate === forecast.time"
+          (click)="toggleDetails(forecast.dt || forecast.time)"
+          [class.rotate]="
+            detailsDate === forecast.time || detailsDate === forecast.dt
+          "
         ></button>
       </div>
     </p-card>
