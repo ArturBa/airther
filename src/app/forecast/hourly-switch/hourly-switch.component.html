@@ -2,6 +2,7 @@
   <p-dropdown
     [options]="hourlyShowDropdown"
     [(ngModel)]="showType"
+    (onChange)="showTypeChange.emit(showType)"
     optionLabel="value"
     optionValue="value"
     autoWidth="false"

@@ -11,7 +11,7 @@
     <p-card>
       <div class="header">
         <h2>
-          {{ forecast.time | date: 'H:mm' }}
+          {{ forecast.time * 1000 | date: 'H:mm' }}
         </h2>
       </div>
 
@@ -20,7 +20,12 @@
         <i class="wi wi-night-sleet wi-large"></i>
       </div>
 
-      <div *ngIf="showType === HOURLY_SHOW.airQuality"></div>
+      <div *ngIf="showType === HOURLY_SHOW.airQuality">
+        <img class="index__image" [src]="forecast.indexImageUrl" />
+        <div class="index__name">
+          {{ getAirQualityIndexName(forecast.index) }}
+        </div>
+      </div>
 
       <div class="footer">
         <button

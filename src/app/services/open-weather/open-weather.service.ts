@@ -1,9 +1,18 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URL } from './URL';
+import { map } from 'rxjs/operators';
 
-import { CityLocation, FullWeather, FullAir } from './open-weather.model';
+import { environment } from 'src/environments/environment';
+import { Coordinates } from 'src/app/shared/models/coordinates.model';
+import { AirQuality } from 'src/app/forecast/models/air-quality.model';
+import { AirQualityMapper } from './air-quality-mapper';
+import {
+  CityLocation,
+  FullWeather,
+  AirQualityApiDto,
+} from './open-weather.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +32,29 @@ export class OpenWeatherService {
   }
 
   /**
+   * Get air quality for given coordinates
+   * @param coordinates place coordinates
+   * @returns AirQuality observable
+   */
+
+  getAirQuality(coordinates: Coordinates): Observable<AirQuality> {
+    const params = new HttpParams()
+      .set('lat', coordinates?.latitude?.toString())
+      .set('lon', coordinates?.longitude?.toString())
+      .set('appid', environment.weatherapi.apiKey);
+
+    return this.httpClient
+      .get<AirQualityApiDto>(API_URL.airQuality, { params })
+      .pipe(map((res) => AirQualityMapper.Map(res.list[0])));
+  }
+
+  /*
    * Get current weather and forecast in openweather api standard for given coords
    * @param lat latitude
    * @param lon longitude
    * @returns current weather and forecast
    */
+
   getWeather(lat: number, lon: number): Observable<FullWeather> {
     return this.httpClient.get<FullWeather>(
       this.enterCoord(lat, lon, API_URL.weather)
@@ -40,8 +67,8 @@ export class OpenWeatherService {
    * @param lon longitude
    * @returns air quality forecast
    */
-  getAirForecast(lat: number, lon: number): Observable<FullAir> {
-    return this.httpClient.get<FullAir>(
+  getAirForecast(lat: number, lon: number): Observable<AirQualityApiDto> {
+    return this.httpClient.get<AirQualityApiDto>(
       this.enterCoord(lat, lon, API_URL.air_forecast)
     );
   }

@@ -1,3 +1,5 @@
+import { AirQuality } from 'src/app/forecast/models/air-quality.model';
+
 /**
  * Open api city location interface
  */
@@ -75,12 +77,20 @@ export interface FullAir {
 }
 
 /**
- * Open api AirQuality interface
+ * Open api AirQuality responce interface
  */
-export interface AirQuality {
-  main: AQI;
-  components: Components;
+export interface AirQualityApiDto {
+  coord: Coord;
+  list: AirQualityDto[];
+}
+
+/**
+ * Open AirQuality responce interface
+ */
+export interface AirQualityDto {
   dt: number;
+  main: { aqi: number };
+  components: Components;
 }
 
 /**
