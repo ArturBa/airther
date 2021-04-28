@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { Coord } from '../services/open-weather/open-weather.model';
+import {
+  CityByGPSDto,
+  Coord,
+} from '../services/open-weather/open-weather.model';
+import { IpApiService } from '../services/ip-api/ip-api.service';
 import { OpenWeatherService } from '../services/open-weather/open-weather.service';
 
 /**
@@ -20,7 +24,7 @@ export class LocationComponent implements OnInit {
   /**
    * Input cityData{string} for a city name for weather location
    */
-  @Input() cityData: string;
+  cityData: string;
 
   /**
    * Input form
@@ -35,7 +39,10 @@ export class LocationComponent implements OnInit {
    * Constructor
    * @param owService OpenWeatherService
    */
-  constructor(protected owService: OpenWeatherService) {}
+  constructor(
+    protected owService: OpenWeatherService,
+    protected ipApiService: IpApiService
+  ) {}
 
   /**
    * Init a component with a form group
@@ -43,6 +50,23 @@ export class LocationComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       city: new FormControl(''),
+    });
+    this.initLocation();
+  }
+
+  /**
+   * Init application location by user IP
+   */
+  protected initLocation(): void {
+    this.ipApiService.getLocation().subscribe((location) => {
+      this.emitLocation(location.latitude, location.longitude);
+      this.cityData = location.city;
+    });
+  }
+
+  protected updateUserLocation(lat: number, lon: number): void {
+    this.owService.getCityByCoord(lat, lon).subscribe((res: CityByGPSDto[]) => {
+      this.cityData = res[0].name;
     });
   }
 
@@ -75,6 +99,7 @@ export class LocationComponent implements OnInit {
 
           this.clearError();
           this.emitLocation(lat, lon);
+          this.updateUserLocation(lat, lon);
         },
         (decline) => {
           this.errorMsg = 'Permission declined';

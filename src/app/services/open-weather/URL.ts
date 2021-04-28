@@ -16,4 +16,5 @@ export const API_URL = {
     'lat={lat}&lon={lon}&appid=' +
     environment.weatherapi.apiKey,
   airQuality: 'https://api.openweathermap.org/data/2.5/air_pollution',
+  cityByGPS: 'https://api.openweathermap.org/geo/1.0/reverse?',
 };
