@@ -138,7 +138,6 @@ export class HourlyForecastComponent {
   }
 
   getIcon(forecast: Weather): string {
-    return 'wi-day-sunny';
     const icon = forecast?.weather[0].icon;
     switch (icon) {
       case '01d':
