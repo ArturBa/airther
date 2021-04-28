@@ -4,10 +4,9 @@ import { ViewChild } from '@angular/core';
 
 import { HOURLY_SHOW } from '../hourly-switch/hourly-switch.component';
 import { WidthHelper } from '../../helpers/width.helper';
-import {
-  AirQuality,
-  Weather,
-} from '../../services/open-weather/open-weather.model';
+import { Weather } from '../../services/open-weather/open-weather.model';
+import { AirQuality } from '../models/air-quality.model';
+import { AirQualityIndexEnum } from 'src/app/shared/enums/air-quality-index.enum';
 
 /**
  * Hourly forecast component
@@ -108,6 +107,15 @@ export class HourlyForecastComponent {
   }
 
   /**
+   * Get a air quality index name
+   * @param index air quality index enum value
+   */
+
+  getAirQualityIndexName(index: AirQualityIndexEnum): string {
+    return AirQualityIndexEnum[index];
+  }
+
+  /**
    * Get a weather for details in selected time
    */
   get weatherSelectedTime(): Weather | null {
@@ -129,7 +137,7 @@ export class HourlyForecastComponent {
       return null;
     }
     return this.airQualityForecast.filter(
-      (forecast) => forecast.dt === this.detailsDate.valueOf()
+      (forecast) => forecast.time === this.detailsDate.valueOf()
     )[0];
   }
 }

@@ -1,8 +1,6 @@
+import { AirQuality } from '../models/air-quality.model';
 import { Component, Input } from '@angular/core';
-import {
-  AirQuality,
-  Weather,
-} from '../../services/open-weather/open-weather.model';
+import { Weather } from '../../services/open-weather/open-weather.model';
 
 /**
  * Forecast component

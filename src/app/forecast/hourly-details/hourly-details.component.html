@@ -37,4 +37,42 @@
       ></app-title-value>
     </div>
   </div>
+
+  <div *ngIf="showType === HOURLY_SHOW.airQuality && airQualityForecast">
+    <div *ngIf="!isSmallScreen()">
+      <div class="air-quality__header">Air Quality</div>
+      <div class="air-quality__elements-list">
+        <div
+          *ngFor="
+            let component of airQualityForecast.components;
+            let last = last
+          "
+        >
+          <div class="air-quality__element">
+            <div>{{ component.name }}</div>
+            <div class="air-quality__element__value">
+              {{ component.value + ' μm/m3' }}
+            </div>
+            <div class="air-quality__element__percentage-value">
+              {{ component.percentageOfStandardValue + ' %' }}
+            </div>
+          </div>
+          <div *ngIf="!last" class="divider"></div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isSmallScreen()">
+      <div
+        *ngFor="let component of airQualityForecast.components; let last = last"
+      >
+        <div class="air-quality__element--mobile">
+          <div class="air-quality__element__name--mobile">
+            {{ component.name }}
+          </div>
+          <div>{{ component.value + ' μm/m3' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </p-card>

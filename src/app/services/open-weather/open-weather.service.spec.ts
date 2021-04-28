@@ -3,7 +3,12 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed, getTestBed } from '@angular/core/testing';
-import { CityLocation, FullWeather, FullAir } from './open-weather.model';
+import {
+  CityLocation,
+  FullWeather,
+  FullAir,
+  AirQualityApiDto,
+} from './open-weather.model';
 
 import { OpenWeatherService } from './open-weather.service';
 import { API_URL } from './URL';
@@ -106,7 +111,7 @@ describe('OpenWeatherService', () => {
 
   describe('#getAirForecast', () => {
     it('should return an Observable<FullAir> ', () => {
-      const dummyAir: FullAir = {
+      const dummyAir: AirQualityApiDto = {
         coord: {
           lon: 50,
           lat: 50,
