@@ -5,6 +5,8 @@ import {
   AQI,
   Components,
   Description,
+  FullAir,
+  FullWeather,
   Rain,
   Snow,
   Weather,
@@ -52,7 +54,26 @@ export class TestHelper {
     },
   ];
 
-  static airQualityComponent: AirQualityComponent[] = [];
+  static fullWeather: FullWeather = {
+    lat: 0,
+    lon: 0,
+    timezone: '',
+    timezone_offset: 100,
+    hourly: TestHelper.weatherForecast,
+  };
+
+  static airQualityComponent: Components = {
+    co: 0,
+    no: 0,
+    no2: 0,
+    o3: 0,
+    so2: 0,
+    pm2_5: 0,
+    pm10: 0,
+    nh3: 0,
+  };
+  static airQualityComponents: AirQualityComponent[] = [];
+
   static airQualityMain: AQI = {
     aqi: 10000,
   };
@@ -62,11 +83,19 @@ export class TestHelper {
   static airQualityForecast: AirQuality[] = [
     {
       time: TestHelper.testDate.valueOf(),
-      components: TestHelper.airQualityComponent,
+      components: TestHelper.airQualityComponents,
       index: 1,
       indexImageUrl: '',
     },
   ];
+
+  static fullAirQuality: FullAir = {
+    coord: {
+      lat: 0,
+      lon: 0,
+    },
+    list: TestHelper.airQualityForecast,
+  };
 
   /**
    * Generate a OpenWeatherService Mock
@@ -75,7 +104,7 @@ export class TestHelper {
   static openWeatherMock(): any {
     const openWeatherServiceMock = jasmine.createSpyObj(
       'OpenWeatherServiceMock',
-      ['getLocation']
+      ['getLocation', 'getWeather', 'getAirForecast']
     );
     openWeatherServiceMock.getLocation.and.returnValue(
       of([
@@ -84,6 +113,12 @@ export class TestHelper {
           lon: 0,
         },
       ])
+    );
+    openWeatherServiceMock.getWeather.and.returnValue(
+      of(TestHelper.fullWeather)
+    );
+    openWeatherServiceMock.getAirForecast.and.returnValue(
+      of(TestHelper.fullAirQuality)
     );
     return openWeatherServiceMock;
   }

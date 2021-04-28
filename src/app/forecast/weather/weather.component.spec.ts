@@ -21,12 +21,33 @@ describe('WeatherComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WeatherComponent);
     component = fixture.componentInstance;
-    component.weatherForecast = TestHelper.weatherForecast[0];
+    component.weatherForecast = { ...TestHelper.weatherForecast[0] };
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
-    // TODO: Use helper to set data
+  it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should return rain value', () => {
+    expect(component.rain).toEqual(TestHelper.weatherRainSnow['1h']);
+  });
+  it('should return snow value', () => {
+    expect(component.snow).toEqual(TestHelper.weatherRainSnow['1h']);
+  });
+
+  describe('NO rain and snow', () => {
+    beforeEach(() => {
+      delete component.weatherForecast.snow;
+      delete component.weatherForecast.rain;
+      fixture.detectChanges();
+    });
+
+    it('should return 0 if no rain', () => {
+      expect(component.rain).toEqual(0);
+    });
+
+    it('should return 0 if no snow', () => {
+      expect(component.rain).toEqual(0);
+    });
   });
 });

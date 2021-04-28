@@ -10,17 +10,18 @@ import { TestHelper } from '../shared/test/test.helper';
 
 import { DashboardComponent } from './dashboard.component';
 import { CommonModule } from '@angular/common';
+import { Coord } from '../services/open-weather/open-weather.model';
 
-xdescribe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('DashboardComponent', () => {
+  let component: TestDashboard;
+  let fixture: ComponentFixture<TestDashboard>;
 
   const IpApiServiceMock = TestHelper.ipApiMock();
   const OpenWeatherServiceMock = TestHelper.openWeatherMock();
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
+      declarations: [TestDashboard],
       imports: [
         CommonModule,
         ForecastModule,
@@ -36,7 +37,7 @@ xdescribe('DashboardComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(TestDashboard);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -45,9 +46,15 @@ xdescribe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('should update location on call', () => {
+  it('should update location on call', () => {
     const location = { lat: 10, lon: 10 };
     component.updateLocation(location);
-    // expect(component.location).toEqual(location);
+    expect(component.getLocation()).toEqual(location);
   });
 });
+
+class TestDashboard extends DashboardComponent {
+  getLocation(): Coord {
+    return this.location;
+  }
+}
