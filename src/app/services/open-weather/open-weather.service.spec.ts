@@ -83,12 +83,14 @@ describe('OpenWeatherService', () => {
             visibility: 12,
             wind_speed: 12,
             wind_deg: 12,
-            weather: {
-              id: 1,
-              main: 'string',
-              description: 'string',
-              icon: 'string',
-            },
+            weather: [
+              {
+                id: 1,
+                main: 'string',
+                description: 'string',
+                icon: 'string',
+              },
+            ],
           },
         ],
       };
