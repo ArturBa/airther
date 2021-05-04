@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 
 import {
@@ -8,7 +8,6 @@ import {
   FullWeather,
   WeatherForecastModel,
 } from '../services/open-weather/open-weather.model';
-import { IpApiService } from '../services/ip-api/ip-api.service';
 import { OpenWeatherService } from '../services/open-weather/open-weather.service';
 import { AirQualityMapper } from '../services/open-weather/air-quality-mapper';
 
@@ -20,15 +19,11 @@ import { AirQualityMapper } from '../services/open-weather/air-quality-mapper';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   /**
    * User location
    */
   protected location = {} as Coord;
-  /**
-   * User  city name
-   */
-  city: string;
   /**
    * Weather forecast data
    */
@@ -49,35 +44,7 @@ export class DashboardComponent implements OnInit {
    * @param ipApiService IpApiService
    * @param owService OpenWeatherService
    */
-  constructor(
-    protected ipApiService: IpApiService,
-    protected owService: OpenWeatherService
-  ) {}
-
-  /**
-   * Init component
-   * Get user location and weather
-   */
-  async ngOnInit(): Promise<void> {
-    await this.initLocation();
-    this.updateForecast();
-  }
-
-  /**
-   * Init application location by user IP
-   */
-  protected initLocation(): Promise<void> {
-    return new Promise((res, rej) => {
-      this.ipApiService.getLocation().subscribe((location) => {
-        this.location = {
-          lat: location.latitude,
-          lon: location.longitude,
-        };
-        this.city = location.city;
-        res();
-      });
-    });
-  }
+  constructor(protected owService: OpenWeatherService) {}
 
   /**
    * Set data loading status

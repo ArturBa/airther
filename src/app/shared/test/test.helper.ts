@@ -106,7 +106,7 @@ export class TestHelper {
   static openWeatherMock(): any {
     const openWeatherServiceMock = jasmine.createSpyObj(
       'OpenWeatherServiceMock',
-      ['getLocation', 'getWeather', 'getAirForecast']
+      ['getLocation', 'getWeather', 'getAirForecast', 'getCityByCoord']
     );
     openWeatherServiceMock.getLocation.and.returnValue(
       of([
@@ -121,6 +121,14 @@ export class TestHelper {
     );
     openWeatherServiceMock.getAirForecast.and.returnValue(
       of(TestHelper.fullAirQuality)
+    );
+    openWeatherServiceMock.getCityByCoord.and.returnValue(
+      of([
+        {
+          name: 'a',
+          country: 'poland',
+        },
+      ])
     );
     return openWeatherServiceMock;
   }

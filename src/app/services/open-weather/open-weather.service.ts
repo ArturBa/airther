@@ -12,6 +12,7 @@ import {
   CityLocation,
   FullWeather,
   AirQualityApiDto,
+  CityByGPSDto,
 } from './open-weather.model';
 
 @Injectable({
@@ -71,6 +72,21 @@ export class OpenWeatherService {
     return this.httpClient.get<AirQualityApiDto>(
       this.enterCoord(lat, lon, API_URL.air_forecast)
     );
+  }
+
+  /**
+   * Get city by coords
+   * @param lat latitude
+   * @param lon longitude
+   * @returns City found on given location
+   */
+  getCityByCoord(lat: number, lon: number): Observable<CityByGPSDto[]> {
+    const params = new HttpParams()
+      .set('lat', lat.toString())
+      .set('lon', lon.toString())
+      .set('appid', environment.weatherapi.apiKey);
+
+    return this.httpClient.get<CityByGPSDto[]>(API_URL.cityByGPS, { params });
   }
 
   /**
