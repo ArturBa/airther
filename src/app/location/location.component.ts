@@ -130,6 +130,7 @@ export class LocationComponent implements OnInit {
         const lat = location[0].lat;
         const lon = location[0].lon;
 
+        this.cityData = city;
         this.clearError();
         this.emitLocation(lat, lon);
       },
