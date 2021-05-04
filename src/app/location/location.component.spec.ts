@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
+import { IpApiService } from '../services/ip-api/ip-api.service';
 
 import { OpenWeatherService } from '../services/open-weather/open-weather.service';
 import { TestHelper } from '../shared/test/test.helper';
@@ -11,6 +12,7 @@ describe('LocationComponent', () => {
   let component: LocationComponent;
   let fixture: ComponentFixture<LocationComponent>;
 
+  const IpApiServiceMock = TestHelper.ipApiMock();
   const openWeatherServiceMock = TestHelper.openWeatherMock();
 
   beforeEach(async () => {
@@ -18,6 +20,7 @@ describe('LocationComponent', () => {
       declarations: [LocationComponent],
       imports: [CardModule, FormsModule, ReactiveFormsModule],
       providers: [
+        { provide: IpApiService, useValue: IpApiServiceMock },
         { provide: OpenWeatherService, useValue: openWeatherServiceMock },
       ],
     }).compileComponents();
