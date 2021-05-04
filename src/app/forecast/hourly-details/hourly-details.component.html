@@ -1,38 +1,38 @@
 <p-card>
   <div *ngIf="showType === HOURLY_SHOW.weather && weatherForecast">
     <span>
-      {{ weatherForecast.weather.description }}
+      {{ weatherForecast.weather[0].description }}
     </span>
     <span [innerHTML]="'Perceived: ' + weatherForecast.temp + '&deg'"> </span>
     <div class="p-grid">
       <app-title-value
         title="Rain"
-        [value]="weatherForecast.rain + 'mm'"
+        [value]="rain + ' mm'"
         class="p-col-4"
       ></app-title-value>
       <app-title-value
         title="Wind"
-        [value]="weatherForecast.rain + 'km/h'"
+        [value]="weatherForecast.wind_speed + ' km/h'"
         class="p-col-4"
       ></app-title-value>
       <app-title-value
         title="Humidity"
-        [value]="weatherForecast.rain + '%'"
+        [value]="weatherForecast.humidity + ' %'"
         class="p-col-4"
       ></app-title-value>
       <app-title-value
         title="Snow"
-        [value]="weatherForecast.rain + 'mm'"
+        [value]="snow + ' mm'"
         class="p-col-4"
       ></app-title-value>
       <app-title-value
         title="Pressure"
-        [value]="weatherForecast.rain + 'hPa'"
+        [value]="weatherForecast.pressure + ' hPa'"
         class="p-col-4"
       ></app-title-value>
       <app-title-value
         title="Cloudy"
-        [value]="weatherForecast.rain + '%'"
+        [value]="weatherForecast.clouds + ' %'"
         class="p-col-4"
       ></app-title-value>
     </div>

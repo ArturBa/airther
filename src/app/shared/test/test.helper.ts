@@ -21,12 +21,14 @@ export class TestHelper {
    */
   static testDate = new Date(1618678998);
 
-  static weatherDescription: Description = {
-    id: 1,
-    main: 'a',
-    description: 'nop',
-    icon: 'cloud',
-  };
+  static weatherDescription: Description[] = [
+    {
+      id: 1,
+      main: 'a',
+      description: 'nop',
+      icon: 'cloud',
+    },
+  ];
   static weatherRainSnow: Rain | Snow = {
     '1h': 10,
   };

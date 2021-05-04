@@ -38,7 +38,7 @@ export interface Weather {
   wind_speed: number;
   wind_gust?: number;
   wind_deg: number;
-  weather: Description;
+  weather: Description[];
   pop?: number;
   rain?: Rain;
   snow?: Snow;

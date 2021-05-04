@@ -49,4 +49,12 @@ export class HourlyDetailsComponent implements OnInit {
   isSmallScreen(): boolean {
     return WidthHelper.isSmallScreen(this.innerWidth);
   }
+
+  get rain(): number {
+    return this.weatherForecast?.rain?.['1h'] || 0;
+  }
+
+  get snow(): number {
+    return this.weatherForecast?.snow?.['1h'] || 0;
+  }
 }

@@ -80,8 +80,6 @@ export class HourlyForecastComponent {
   toggleDetails(date: Date): void {
     if (date === this.detailsDate) {
       this.detailsDate = null;
-      const currentScroll =
-        document.documentElement.scrollTop || document.body.scrollTop;
       setTimeout(
         () =>
           window.scrollBy({
@@ -119,11 +117,9 @@ export class HourlyForecastComponent {
    * Get a weather for details in selected time
    */
   get weatherSelectedTime(): Weather | null {
-    if (this.detailsDate === null) {
-      // console.log(this.weatherForecast)
+    if (!this.detailsDate) {
       return null;
     }
-    // console.dir(this.weatherForecast, this.detailsDate)
     return this.weatherForecast.filter(
       (forecast) => forecast.dt === this.detailsDate.valueOf()
     )[0];
@@ -133,11 +129,37 @@ export class HourlyForecastComponent {
    * Get a air quality for details in selected time
    */
   get airQualitySelectedTime(): AirQuality | null {
-    if (this.detailsDate === null) {
+    if (!this.detailsDate) {
       return null;
     }
     return this.airQualityForecast.filter(
       (forecast) => forecast.time === this.detailsDate.valueOf()
     )[0];
+  }
+
+  getIcon(forecast: Weather): string {
+    const icon = forecast?.weather[0].icon;
+    switch (icon) {
+      case '01d':
+        return 'wi-day-sunny';
+      case '02d':
+        return 'wi-day-cloudy';
+      case '03d':
+        return 'wi-cloud';
+      case '04d':
+        return 'wi-cloudy';
+      case '09d':
+        return 'wi-showers';
+      case '10d':
+        return 'wi-rain';
+      case '11d':
+        return 'wi-thunderstorm';
+      case '13d':
+        return 'wi-snow';
+      case '50d':
+        return 'wi-dust';
+      default:
+        return 'wi-day-sunny';
+    }
   }
 }
