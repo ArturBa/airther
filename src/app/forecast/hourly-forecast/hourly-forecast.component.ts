@@ -158,6 +158,24 @@ export class HourlyForecastComponent {
         return 'wi-snow';
       case '50d':
         return 'wi-dust';
+      case '01n':
+        return 'wi-night-clear';
+      case '02n':
+        return 'wi-night-alt-cloudy';
+      case '03n':
+        return 'wi-cloud';
+      case '04n':
+        return 'wi-cloudy';
+      case '09n':
+        return 'wi-showers';
+      case '10n':
+        return 'wi-rain';
+      case '11n':
+        return 'wi-thunderstorm';
+      case '13n':
+        return 'wi-snow';
+      case '50n':
+        return 'wi-dust';
       default:
         return 'wi-day-sunny';
     }
