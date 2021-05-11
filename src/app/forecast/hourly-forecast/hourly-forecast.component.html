@@ -35,10 +35,8 @@
           type="button"
           icon="pi pi-chevron-down"
           class="p-button-rounded p-button-text p-button-plain"
-          (click)="toggleDetails(forecast.dt || forecast.dt)"
-          [class.rotate]="
-            detailsDate === forecast.dt || detailsDate === forecast.dt
-          "
+          (click)="toggleDetails(forecast.dt)"
+          [class.rotate]="detailsDate === forecast.dt"
         ></button>
       </div>
     </p-card>

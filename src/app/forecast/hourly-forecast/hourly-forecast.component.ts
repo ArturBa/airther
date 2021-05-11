@@ -55,7 +55,7 @@ export class HourlyForecastComponent implements OnInit {
    * Details date to show
    * If null no details are shown
    */
-  detailsDate: number | null = null;
+  detailsDate: Date | null = null;
 
   /**
    * Current show type
@@ -97,7 +97,7 @@ export class HourlyForecastComponent implements OnInit {
    * If new date is equal to a current, date is set to null
    * @param date new date
    */
-  toggleDetails(date: number): void {
+  toggleDetails(date: Date): void {
     if (date === this.detailsDate) {
       this.detailsDate = null;
       setTimeout(
@@ -208,16 +208,20 @@ export class HourlyForecastComponent implements OnInit {
    * @param event onPage event
    */
   pageChanged(e: { page: number }): void {
+    const timeStamp =
+      this.detailsDate && typeof this.detailsDate !== 'number'
+        ? this.detailsDate.getTime()
+        : this.detailsDate;
     if (this.isSmallScreen()) {
-      const index = this.getForecast().findIndex(
-        (x) => x.dt === this.detailsDate
-      );
-      if (e.page > this.currentPage) {
-        this.toggleDetails(this.getForecast()[index + 1].dt);
-      } else if (e.page < this.currentPage) {
-        this.toggleDetails(this.getForecast()[index - 1].dt);
+      const index = this.getForecast().findIndex((x) => x.dt === timeStamp);
+      console.log(index);
+      if (index >= 0) {
+        if (e.page > this.currentPage) {
+          this.toggleDetails(new Date(this.getForecast()[index + 1].dt));
+        } else if (e.page < this.currentPage) {
+          this.toggleDetails(new Date(this.getForecast()[index - 1].dt));
+        }
       }
-      this.currentPage = e.page;
     }
   }
 }
