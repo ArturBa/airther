@@ -1,4 +1,10 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ViewChild } from '@angular/core';
 
@@ -28,7 +34,7 @@ import { AirQualityIndexEnum } from 'src/app/shared/enums/air-quality-index.enum
     ]),
   ],
 })
-export class HourlyForecastComponent {
+export class HourlyForecastComponent implements OnInit {
   /**
    * Weather forecast object array
    */
@@ -49,7 +55,7 @@ export class HourlyForecastComponent {
    * Details date to show
    * If null no details are shown
    */
-  detailsDate: Date | null = null;
+  detailsDate: number | null = null;
 
   /**
    * Current show type
@@ -57,9 +63,23 @@ export class HourlyForecastComponent {
   showType = HOURLY_SHOW.weather;
 
   /**
+   * Current page of caurousel
+   */
+  currentPage = 0;
+
+  /**
    * carrousel config copy to template
    */
   readonly responsiveOptions = WidthHelper.responsiveOptions;
+
+  /**
+   * component inner width
+   */
+  innerWidth: number;
+
+  ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+  }
 
   /**
    * Get a forecast depending on current show type
@@ -77,7 +97,7 @@ export class HourlyForecastComponent {
    * If new date is equal to a current, date is set to null
    * @param date new date
    */
-  toggleDetails(date: Date): void {
+  toggleDetails(date: number): void {
     if (date === this.detailsDate) {
       this.detailsDate = null;
       setTimeout(
@@ -133,7 +153,7 @@ export class HourlyForecastComponent {
       return null;
     }
     return this.airQualityForecast.filter(
-      (forecast) => forecast.time === this.detailsDate.valueOf()
+      (forecast) => forecast.dt === this.detailsDate.valueOf()
     )[0];
   }
 
@@ -160,6 +180,44 @@ export class HourlyForecastComponent {
         return 'wi-dust';
       default:
         return 'wi-day-sunny';
+    }
+  }
+
+  /**
+   * Update width on resize
+   * @param event window resize
+   */
+  @HostListener('window:resize', ['$event'])
+  protected onResize(event): void {
+    this.innerWidth = window.innerWidth;
+    if (this.isSmallScreen()) {
+      this.detailsDate = null;
+    }
+  }
+
+  /**
+   * Check if we are on small screen (mobile)
+   * @returns true if screen is small
+   */
+  isSmallScreen(): boolean {
+    return WidthHelper.isSmallScreen(this.innerWidth);
+  }
+
+  /**
+   * Update details on carousel page changes
+   * @param event onPage event
+   */
+  pageChanged(e: { page: number }): void {
+    if (this.isSmallScreen()) {
+      const index = this.getForecast().findIndex(
+        (x) => x.dt === this.detailsDate
+      );
+      if (e.page > this.currentPage) {
+        this.toggleDetails(this.getForecast()[index + 1].dt);
+      } else if (e.page < this.currentPage) {
+        this.toggleDetails(this.getForecast()[index - 1].dt);
+      }
+      this.currentPage = e.page;
     }
   }
 }

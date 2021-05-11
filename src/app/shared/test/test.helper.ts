@@ -84,7 +84,7 @@ export class TestHelper {
    */
   static airQualityForecast: AirQuality[] = [
     {
-      time: TestHelper.testDate.valueOf(),
+      dt: TestHelper.testDate.valueOf(),
       components: TestHelper.airQualityComponents,
       index: 1,
       indexImageUrl: '',
