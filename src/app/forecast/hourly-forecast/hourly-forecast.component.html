@@ -8,7 +8,7 @@
   indicatorsContentClass="display: none;"
   (onPage)="pageChanged($event)"
 >
-  <ng-template let-forecast let-index pTemplate="item">
+  <ng-template let-forecast pTemplate="item">
     <p-card>
       <div class="header">
         <h2>
@@ -35,7 +35,7 @@
           type="button"
           icon="pi pi-chevron-down"
           class="p-button-rounded p-button-text p-button-plain"
-          (click)="toggleDetails(forecast.dt || forecast.dt, index)"
+          (click)="toggleDetails(forecast.dt || forecast.dt)"
           [class.rotate]="
             detailsDate === forecast.dt || detailsDate === forecast.dt
           "
