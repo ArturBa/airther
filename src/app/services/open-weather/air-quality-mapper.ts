@@ -31,24 +31,24 @@ export abstract class AirQualityMapper {
 
   static Map(airQuality: AirQualityDto): AirQuality {
     return {
-      time: airQuality.dt,
-      index: airQuality.main.aqi,
-      indexImageUrl: this.airQualityIndexImages.get(airQuality.main.aqi),
+      dt: airQuality?.dt,
+      index: airQuality?.main?.aqi,
+      indexImageUrl: this.airQualityIndexImages.get(airQuality?.main?.aqi),
       components: [
         {
           name: 'PM 2.5',
-          value: airQuality.components.pm2_5,
+          value: airQuality?.components?.pm2_5,
           percentageOfStandardValue: this.getPercentageOfStandardValue(
             'pm2_5',
-            airQuality.components.pm2_5
+            airQuality?.components?.pm2_5
           ),
         },
         {
           name: 'PM 10',
-          value: airQuality.components.pm10,
+          value: airQuality?.components?.pm10,
           percentageOfStandardValue: this.getPercentageOfStandardValue(
             'pm10',
-            airQuality.components.pm10
+            airQuality?.components?.pm10
           ),
         },
       ],
