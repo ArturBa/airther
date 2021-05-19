@@ -214,7 +214,6 @@ export class HourlyForecastComponent implements OnInit {
         : this.detailsDate;
     if (this.isSmallScreen()) {
       const index = this.getForecast().findIndex((x) => x.dt === timeStamp);
-      console.log(index);
       if (index >= 0) {
         if (e.page > this.currentPage) {
           this.toggleDetails(new Date(this.getForecast()[index + 1].dt));
