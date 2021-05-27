@@ -58,12 +58,16 @@ describe('home page', () => {
     });
 
     it('should change displayed data if another city selected #7', () => {
-      const previousDetails = cy.get('app-hourly-details');
+      const previousWeather = cy.get('app-weather');
+      const previousAirQuality = cy.get('app-airquality');
       cy.get('input').type(existingCity);
       cy.get('app-location form').submit();
-      const afterDetails = cy.get('app-hourly-details');
+      cy.get('app-hourly-details').should('not.exist');
+      const afterWeather = cy.get('app-weather');
+      const afterAirQuality = cy.get('app-airquality');
 
-      expect(previousDetails).not.equal(afterDetails);
+      expect(previousWeather).not.equal(afterWeather);
+      expect(previousAirQuality).not.equal(afterAirQuality);
     });
   });
 
