@@ -71,6 +71,21 @@ describe('home page', () => {
     });
   });
 
+  describe('carousel view', () => {
+    it('should display another time forecast if carrousel next clicked #5.1', () => {
+      expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+      cy.get('.p-carousel-next').click();
+      expect(cy.get('.hourly-forecast:nth(0)').should('not.be.visible'));
+    });
+
+    it('should back previous time forecast if carrousel next and back clicked #5.1', () => {
+      expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+      cy.get('.p-carousel-next').click();
+      cy.get('.p-carousel-prev').click();
+      expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+    });
+  });
+
   describe('change current view mode', () => {
     beforeEach(() => {
       const airQualityButton = cy.get(
