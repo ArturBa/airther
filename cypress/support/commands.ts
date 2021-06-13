@@ -13,7 +13,6 @@
 // Cypress.Commands.add('login', (email, password) => { ... })
 Cypress.Commands.add('selectDropdown', (value) => {
   cy.get('p-dropdown').click();
-  // cy.get('li[aria-label="Air Quality"]').click();
   cy.get(`li[aria-label="${value}"]`).click();
 });
 //
