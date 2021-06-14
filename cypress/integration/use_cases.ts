@@ -72,17 +72,40 @@ describe('home page', () => {
   });
 
   describe('carousel view', () => {
-    it('should display another time forecast if carrousel next clicked #5.1', () => {
-      expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
-      cy.get('.p-carousel-next').click();
-      expect(cy.get('.hourly-forecast:nth(0)').should('not.be.visible'));
-    });
+    describe('weather data', () => {
+      it('should display another time forecast if carrousel next clicked #5.1', () => {
+        expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+        cy.get('.p-carousel-next').click();
+        expect(cy.get('.hourly-forecast:nth(0)').should('not.be.visible'));
+      });
 
-    it('should back previous time forecast if carrousel next and back clicked #5.1', () => {
-      expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
-      cy.get('.p-carousel-next').click();
-      cy.get('.p-carousel-prev').click();
-      expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+      it('should back previous time forecast if carrousel next and back clicked #5.1', () => {
+        expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+        cy.get('.p-carousel-next').click();
+        cy.get('.p-carousel-prev').click();
+        expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+      });
+    });
+    describe('air quality data', () => {
+      beforeEach(() => {
+        const airQualityButton = cy.get(
+          'app-hourly-switch > .p-grid > :nth-child(2)'
+        );
+        airQualityButton.click();
+      });
+
+      it('should display another time forecast if carrousel next clicked #11.1', () => {
+        expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+        cy.get('.p-carousel-next').click();
+        expect(cy.get('.hourly-forecast:nth(0)').should('not.be.visible'));
+      });
+
+      it('should back previous time forecast if carrousel next and back clicked #11.1', () => {
+        expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+        cy.get('.p-carousel-next').click();
+        cy.get('.p-carousel-prev').click();
+        expect(cy.get('.hourly-forecast:nth(0)').should('be.visible'));
+      });
     });
   });
 
@@ -102,6 +125,35 @@ describe('home page', () => {
       );
       weatherQualityButton.click();
       cy.get('app-hourly-forecast .wi').should('be.visible');
+    });
+  });
+
+  describe('details air quality data', () => {
+    beforeEach(() => {
+      const airQualityButton = cy.get(
+        'app-hourly-switch > .p-grid > :nth-child(2)'
+      );
+      airQualityButton.click();
+      const openButton = cy.get('.p-button-icon:first');
+      openButton.click();
+    });
+
+    it('should open details on a click #9', () => {
+      cy.get('app-hourly-details').should('be.visible');
+    });
+
+    it('should close after click again #10', () => {
+      cy.get('.p-button-icon:first').click();
+      cy.wait(700);
+      cy.get('app-hourly-details').should('not.exist');
+    });
+
+    it('should change displayed data if another section selected #12', () => {
+      const previousDetails = cy.get('app-hourly-details');
+      cy.get('.p-button-icon:nth(2)').click();
+      const afterDetails = cy.get('app-hourly-details');
+
+      expect(previousDetails).not.equal(afterDetails);
     });
   });
 });
